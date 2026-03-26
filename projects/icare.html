@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iCare — Mia Vong</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: #09090f; color: #f0f0f0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 999; opacity: 0.7;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: flex-start; justify-content: center;
+      padding: 18px 44px;
+    }
+    .nav-pill {
+      display: flex; align-items: center; gap: 28px;
+      padding: 10px 24px;
+      background: rgba(9,9,15,0.72);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 999px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .nav-logo { width: 30px; height: 30px; border-radius: 4px; object-fit: cover; opacity: 0.9; transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1); }
+    .nav-logo:hover { opacity: 1; transform: scale(1.07); }
+    .nav-link { font-size: 13px; color: #6a6a82; text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s ease; }
+    .nav-link:hover { color: #f0f0f0; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #5a5a72; text-decoration: none; transition: color 0.2s ease; margin-bottom: 24px; }
+    .back-link:hover { color: #f0f0f0; }
+    .back-arrow { display: inline-block; transition: transform 0.2s ease; }
+    .back-link:hover .back-arrow,
+    .back-link-mobile:hover .back-arrow { transform: translateX(-3px); }
+
+    .page-layout { display: flex; padding-top: 72px; min-height: 100vh; max-width: 1200px; margin: 0 auto; }
+
+    .sidebar {
+      position: sticky; top: 72px; height: calc(100vh - 72px);
+      width: 200px; flex-shrink: 0;
+      padding: 48px 24px 48px 32px;
+      display: flex; flex-direction: column; gap: 8px;
+      border-right: 1px solid rgba(255,255,255,0.04);
+      overflow-y: auto;
+    }
+    .sidebar-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 12px; font-weight: 500; }
+    .sidebar-link { font-size: 13px; color: #72728a; text-decoration: none; letter-spacing: 0.02em; padding: 5px 0; transition: color 0.18s ease; display: block; line-height: 1.4; }
+    .sidebar-link:hover { color: #b0b0cc; }
+    .sidebar-link.active { color: #c084fc; }
+
+    .main-content { flex: 1; min-width: 0; padding: 0 0 100px; }
+
+    /* Hero — purple gradient */
+    .case-hero {
+      padding: 0;
+      position: relative; overflow: hidden;
+    }
+    .hero-grad {
+      background: linear-gradient(135deg, #1a0a40 0%, #4c1d95 28%, #7c3aed 52%, #be185d 78%, #f472b6 100%);
+      padding: 60px 80px 64px; position: relative;
+    }
+    .hero-grad::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
+      background: linear-gradient(to bottom, transparent, #09090f);
+      pointer-events: none;
+    }
+
+    .project-tag {
+      display: inline-block; font-size: 11px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 999px; padding: 4px 14px; margin-bottom: 24px; font-weight: 500;
+    }
+    .case-title {
+      font-family: 'Solway', serif;
+      font-size: clamp(28px, 3.8vw, 50px);
+      font-weight: 400; letter-spacing: -0.025em;
+      line-height: 1.12; color: #fff; max-width: 680px;
+    }
+    .meta-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0; margin-top: 40px;
+      border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden;
+    }
+    .meta-cell { padding: 22px 28px; background: #0f0f18; }
+    .meta-cell + .meta-cell { border-left: 1px solid rgba(255,255,255,0.06); }
+    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 8px; font-weight: 500; }
+    .meta-value { font-size: 13.5px; color: #b0b0c8; font-weight: 400; line-height: 1.5; }
+
+    /* Sections */
+    .section { padding: 60px 80px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .section:last-child { border-bottom: none; }
+    .section-eyebrow { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #606080; margin-bottom: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+    .section-num { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; color: #c084fc; background: rgba(192,132,252,0.1); border: 1px solid rgba(192,132,252,0.22); border-radius: 4px; padding: 2px 6px; letter-spacing: 0.04em; }
+
+    /* Image wrap with chip label */
+    .img-wrap { position: relative; display: block; }
+    .img-chip { position: absolute; bottom: 12px; left: 12px; font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(9,9,15,0.78); border: 1px solid rgba(255,255,255,0.14); color: #b0b0c8; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: none; }
+    .section-heading { font-family: 'Solway', serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 400; letter-spacing: -0.02em; color: #f0f0f0; margin-bottom: 20px; line-height: 1.2; }
+    .section-body { font-size: 15px; line-height: 1.82; color: #72728a; font-weight: 300; max-width: 640px; }
+
+    .sp { margin-top: 32px; }
+    .sp2 { margin-top: 48px; }
+
+    /* Stats */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 36px; border: 1px solid rgba(255,255,255,0.05); border-radius: 14px; overflow: hidden; }
+    .stat-cell { padding: 36px 28px; background: #0f0f18; }
+    .stat-cell + .stat-cell { border-left: 1px solid rgba(255,255,255,0.05); }
+    .stat-num { font-family: 'Solway', serif; font-size: clamp(40px, 5vw, 60px); font-weight: 700; color: #c084fc; letter-spacing: -0.04em; line-height: 1; margin-bottom: 12px; }
+    .stat-label { font-size: 13px; color: #5a5a72; line-height: 1.55; font-weight: 300; }
+
+    /* Design question */
+    .dq-callout {
+      background: linear-gradient(135deg, rgba(124,58,237,0.08) 0%, rgba(190,24,93,0.05) 100%);
+      border: 1px solid rgba(124,58,237,0.18); border-radius: 14px; padding: 36px;
+    }
+    .dq-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #7c3aed; margin-bottom: 14px; font-weight: 500; opacity: 0.8; }
+    .dq-text { font-family: 'Solway', serif; font-size: clamp(16px, 1.9vw, 21px); font-weight: 400; color: #c8a8e8; line-height: 1.55; font-style: italic; }
+
+    /* Research areas */
+    .research-areas { display: flex; flex-direction: column; gap: 0; margin-top: 32px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; }
+    .research-area { padding: 28px; background: #0f0f18; }
+    .research-area + .research-area { border-top: 1px solid rgba(255,255,255,0.05); }
+    .ra-title { font-size: 14px; font-weight: 500; color: #d0b8f0; margin-bottom: 10px; }
+    .ra-body { font-size: 14px; line-height: 1.75; color: #82829a; font-weight: 300; }
+
+    /* Solutions */
+    .solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+    .solution-card { background: #0f0f18; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 24px; }
+    .solution-arrow { color: #c084fc; font-size: 18px; margin-bottom: 12px; display: block; }
+    .solution-title { font-size: 14px; font-weight: 500; color: #d0d0e8; margin-bottom: 8px; }
+    .solution-desc { font-size: 13.5px; color: #5a5a72; line-height: 1.6; font-weight: 300; }
+
+    /* Before/After */
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
+    .ba-block { min-width: 0; }
+    .ba-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #72728a; margin-bottom: 10px; font-weight: 500; }
+    .ba-img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.35); }
+    .ba-caption { font-size: 12px; color: #606080; margin-top: 8px; line-height: 1.5; }
+
+    /* Phone strip */
+    .phone-strip { display: flex; gap: 16px; justify-content: center; align-items: flex-end; margin-top: 36px; padding: 40px 0 0; }
+    .phone-strip img { height: 340px; width: auto; border-radius: 14px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.07), 0 10px 48px rgba(0,0,0,0.5), 0 0 40px rgba(192,132,252,0.10); flex-shrink: 0; }
+    .phone-strip img:nth-child(2) { height: 380px; }
+
+    /* Img */
+    .img-full { width: 100%; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4); }
+    .img-caption { font-size: 12px; color: #606080; margin-top: 10px; }
+
+    /* Source */
+    .source-block { background: #0c0c14; border: 1px solid rgba(255,255,255,0.04); border-radius: 10px; padding: 20px 24px; margin-top: 24px; }
+    .source-text { font-size: 12px; line-height: 1.7; color: #606080; font-weight: 300; }
+
+    /* Next */
+    .next-project { display: flex; align-items: center; justify-content: space-between; padding: 24px 80px; background: #0f0f18; border-top: 1px solid rgba(255,255,255,0.04); text-decoration: none; color: inherit; transition: background 0.2s ease; }
+    .next-project:hover { background: #131320; }
+    .next-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 6px; }
+    .next-title { font-size: 16px; color: #c0c0d8; font-weight: 400; }
+    .next-arrow { font-size: 20px; color: #72728a; }
+
+    footer { padding: 22px 44px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); }
+    .footer-left { display: flex; align-items: center; gap: 20px; }
+    .footer-name { font-size: 13px; color: #72728a; }
+    .footer-link { font-size: 13px; color: #606080; text-decoration: none; transition: color 0.2s ease; }
+    .footer-link:hover { color: #8a8ab0; }
+    .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
+
+    .back-link-mobile { display: none; }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .back-link-mobile { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #5a5a72; text-decoration: none; transition: color 0.2s ease; padding: 20px 48px 0; }
+      .back-link-mobile:hover { color: #f0f0f0; }
+      .hero-grad, .section { padding: 40px 48px; }
+      .stats-grid, .solution-grid, .before-after { grid-template-columns: 1fr; }
+      .phone-strip { flex-wrap: wrap; justify-content: center; }
+      .phone-strip img { height: 240px; width: auto; }
+      .phone-strip img:nth-child(2) { height: 260px; }
+      nav { padding: 16px 20px; }
+      footer { padding: 20px; flex-direction: column; gap: 10px; text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 12px 14px; }
+      .nav-pill { gap: 16px; padding: 8px 14px; }
+      .nav-logo { width: 26px; height: 26px; }
+      .nav-link { font-size: 12px; }
+      .back-link-mobile { padding: 16px 24px 0; }
+      .page-layout { padding-top: 64px; }
+      .hero-grad, .section { padding: 24px 24px; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .meta-cell + .meta-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
+      .stat-cell + .stat-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.05); }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-number { font-size: clamp(28px, 9vw, 44px); }
+      .phone-strip { gap: 10px; }
+      .phone-strip img { height: 160px; }
+      .phone-strip img:nth-child(2) { height: 180px; }
+      .case-title { font-size: clamp(22px, 7vw, 34px); }
+      .dq-callout { padding: 20px; }
+      .solution-card { padding: 20px; }
+      img { max-width: 100%; }
+      footer { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-pill">
+      <a href="/about.html" class="nav-link">about</a>
+      <a href="/index.html"><img src="/brand_assets/mia_logo.png" alt="Mia Vong" class="nav-logo" /></a>
+      <a href="/index.html#projects" class="nav-link">projects</a>
+    </div>
+  </nav>
+
+  <div class="page-layout">
+
+    <aside class="sidebar">
+      <a href="/index.html" class="back-link"><span class="back-arrow">&larr;</span> back</a>
+      <p class="sidebar-label">Contents</p>
+      <a href="#overview"      class="sidebar-link active">overview</a>
+      <a href="#problem"       class="sidebar-link">problem</a>
+      <a href="#research"      class="sidebar-link">research</a>
+      <a href="#solution"      class="sidebar-link">solution</a>
+      <a href="#final-product" class="sidebar-link">final product</a>
+      <a href="#reflection"    class="sidebar-link">reflection</a>
+    </aside>
+
+    <div class="main-content">
+      <a href="/index.html" class="back-link-mobile"><span class="back-arrow">&larr;</span> back</a>
+
+      <!-- Hero -->
+      <div class="case-hero">
+        <div class="hero-grad">
+          <span class="project-tag">AI &nbsp;/&nbsp; Ethics &nbsp;/&nbsp; Mental Health</span>
+          <h1 class="case-title">Conversational AI agent (iCare) for mental health</h1>
+          <div class="meta-grid">
+            <div class="meta-cell">
+              <p class="meta-label">Team</p>
+              <p class="meta-value">Mia Vong</p>
+            </div>
+            <div class="meta-cell">
+              <p class="meta-label">Tools</p>
+              <p class="meta-value">Figma</p>
+            </div>
+            <div class="meta-cell">
+              <p class="meta-label">Timeline</p>
+              <p class="meta-value">2 months</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overview -->
+      <div class="section" id="overview">
+        <p class="section-eyebrow"><span class="section-num">01</span>Overview</p>
+        <h2 class="section-heading">Background</h2>
+        <p class="section-body">
+          iCare is a virtual mental health assistant developed at the University of Washington, designed to provide empathetic AI-powered therapeutic support. As a design researcher, I investigated the ethical risks of deploying a mental health chatbot and translated those findings into actionable design interventions.
+        </p>
+
+        <!-- App preview -->
+        <div class="phone-strip">
+          <img src="/assets/icare/chatbot-page.png" alt="iCare Home" />
+          <img src="/assets/icare/page-2.png" alt="iCare Chat" />
+          <img src="/assets/icare/page-3.png" alt="iCare Resources" />
+        </div>
+      </div>
+
+      <!-- Problem -->
+      <div class="section" id="problem">
+        <p class="section-eyebrow"><span class="section-num">02</span>Problem</p>
+        <h2 class="section-heading">Mental healthcare is out of reach for millions of Americans.</h2>
+
+        <div class="stats-grid">
+          <div class="stat-cell">
+            <p class="stat-num">26.8%</p>
+            <p class="stat-label">of mental health care needs were met in 2024</p>
+          </div>
+          <div class="stat-cell">
+            <p class="stat-num">122M</p>
+            <p class="stat-label">Americans live in areas with a shortage of mental health professionals</p>
+          </div>
+          <div class="stat-cell">
+            <p class="stat-num">30%</p>
+            <p class="stat-label">of adults with unmet mental illness reported they could not use insurance</p>
+          </div>
+        </div>
+
+        <div class="sp2">
+          <div class="dq-callout">
+            <p class="dq-label">Design Question</p>
+            <p class="dq-text">How do we incorporate user-empathy into a chat-experience centered around mental health and design ethical safeguards, accessibility, and algorithmic transparency into iCare?</p>
+          </div>
+        </div>
+
+        <p class="section-body sp2">
+          While the original iCare system demonstrates the potential of AI-driven mental health support, my work builds on this foundation by addressing critical gaps in ethical design, accessibility, and user safety through a human-centered UX approach.
+        </p>
+      </div>
+
+      <!-- Research -->
+      <div class="section" id="research">
+        <p class="section-eyebrow"><span class="section-num">03</span>Research</p>
+        <h2 class="section-heading">Literature review across three challenge areas</h2>
+        <p class="section-body">
+          This project began with a literature review examining three challenges in AI mental health design: ethical risk, transparency, and digital accessibility. Rather than jumping straight to solutions, I needed to understand the landscape of what could go wrong and what responsible design looked like.
+        </p>
+
+        <div class="research-areas sp">
+          <div class="research-area">
+            <p class="ra-title">Ethical Risks</p>
+            <p class="ra-body">AI chatbots in mental health spaces can produce harmful outputs, exploit regulatory loopholes (many classify as "general wellness tools" to avoid FDA review), and create dangerous over-reliance. A 2024 lawsuit against Character.AI — where a 14-year-old died by suicide after extended chatbot interaction with no crisis resources surfacing — made the stakes viscerally clear.</p>
+          </div>
+          <div class="research-area">
+            <p class="ra-title">Transparency &amp; Trust</p>
+            <p class="ra-body">Research shows users are less likely to over-trust AI when the interface acknowledges the model's limitations. The goal isn't distrust or blind reliance — it's algorithmic vigilance: informed, healthy skepticism. Designing for transparency means surfacing limitations, protecting data privacy, and building feedback loops.</p>
+          </div>
+          <div class="research-area">
+            <p class="ra-title">Accessibility</p>
+            <p class="ra-body">iCare's users are likely to include people already managing mental health conditions, many of whom may also live with disabilities. I reviewed ADA Title II requirements and WCAG 2.1 guidelines — four principles: perceivable, operable, understandable, robust — and evaluated how iCare's original design failed against each.</p>
+          </div>
+        </div>
+
+        <div class="sp2">
+          <img src="https://placehold.co/860x360/0f0f18/2a2a3a?text=Literature+Research+%E2%80%94+GIF+placeholder" alt="Research pages" class="img-full" />
+        </div>
+      </div>
+
+      <!-- Solution -->
+      <div class="section" id="solution">
+        <p class="section-eyebrow"><span class="section-num">04</span>Solution</p>
+        <h2 class="section-heading">Four design interventions</h2>
+
+        <div class="solution-grid">
+          <div class="solution-card">
+            <span class="solution-arrow">→</span>
+            <p class="solution-title">Increase Transparency</p>
+            <p class="solution-desc">Clear disclaimers, acknowledgment flows, and visible system limitations</p>
+          </div>
+          <div class="solution-card">
+            <span class="solution-arrow">→</span>
+            <p class="solution-title">Improve Safety in Crisis Scenarios</p>
+            <p class="solution-desc">Real-time crisis detection and escalation to external support resources</p>
+          </div>
+          <div class="solution-card">
+            <span class="solution-arrow">→</span>
+            <p class="solution-title">Enhance Accessibility &amp; Inclusivity</p>
+            <p class="solution-desc">Simplified UI, adaptable layouts, and support for users with cognitive and visual disabilities</p>
+          </div>
+          <div class="solution-card">
+            <span class="solution-arrow">→</span>
+            <p class="solution-title">Create Feedback &amp; Accountability Loops</p>
+            <p class="solution-desc">Reporting tools and user feedback mechanisms to continuously improve the system</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Product -->
+      <div class="section" id="final-product">
+        <p class="section-eyebrow"><span class="section-num">05</span>Final Product</p>
+        <h2 class="section-heading">iCare's CareBot — design interventions</h2>
+
+        <!-- Acknowledgment page before/after -->
+        <div class="sp">
+          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:20px;">Acknowledgment Page</p>
+          <div class="before-after">
+            <div class="ba-block">
+              <p class="ba-label">Before</p>
+              <img src="https://placehold.co/420x320/0f0f18/2a2a3a?text=Before+%E2%80%94+No+Acknowledgment" alt="Before: no acknowledgment" class="ba-img" />
+            </div>
+            <div class="ba-block">
+              <p class="ba-label">After</p>
+              <img src="/assets/icare/page-2.png" alt="After: acknowledgment flow" class="ba-img" />
+              <p class="ba-caption">Users must explicitly acknowledge AI limitations before engaging with CareBot</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit report -->
+        <div class="sp2">
+          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:20px;">Submit Risk Report</p>
+          <div class="before-after">
+            <div class="ba-block">
+              <p class="ba-label">Before</p>
+              <img src="https://placehold.co/420x320/0f0f18/2a2a3a?text=Before+%E2%80%94+No+Reporting" alt="Before" class="ba-img" />
+            </div>
+            <div class="ba-block">
+              <p class="ba-label">After</p>
+              <img src="/assets/icare/screenshot-1.png" alt="After: submit report" class="ba-img" />
+              <p class="ba-caption">Users can flag harmful or inaccurate responses directly from the chat</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- High risk alert -->
+        <div class="sp2">
+          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:16px;">High Risk Alert</p>
+          <img src="/assets/icare/page-3.png" alt="High risk alert" class="img-full" />
+          <p class="img-caption">Real-time crisis detection escalates to external mental health resources</p>
+        </div>
+
+        <!-- Final screens -->
+        <div class="phone-strip sp2">
+          <img src="/assets/icare/chatbot-page.png" alt="Acknowledgment" />
+          <img src="/assets/icare/page-2.png" alt="Chat + Risk" />
+          <img src="/assets/icare/page-3.png" alt="High Risk Alert" />
+          <img src="/assets/icare/screenshot-1.png" alt="Submit Report" />
+        </div>
+      </div>
+
+      <!-- Reflection -->
+      <div class="section" id="reflection">
+        <p class="section-eyebrow"><span class="section-num">06</span>Reflection</p>
+        <h2 class="section-heading">What I learned</h2>
+        <p class="section-body">
+          There is still a lot to be researched and iterated on for iCare's Carebot. With what seems like an ever-changing AI landscape, I think that being a part of this project was a great introduction to start thinking about how we can leverage AI to help underrepresented groups of people.
+        </p>
+        <p class="section-body sp">
+          My favorite part of this project was collaborating with the AI engineers, who were predominantly PhD students at the University of Washington, because they were also so incredibly smart — I felt like I was learning something new after every conversation.
+        </p>
+
+        <div class="sp2">
+          <p class="section-eyebrow">Sources</p>
+          <div class="source-block">
+            <p class="source-text">R. Mavila, S. Jaiswal, R. Naswa, W. Yuwen, B. Erdly and D. Si, "iCare - An AI - Powered Virtual Assistant for Mental Health," 2024 IEEE 12th International Conference on Healthcare Informatics (ICHI), Orlando, FL, USA, 2024, pp. 466-471, doi: 10.1109/ICHI61247.2024.00066.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next -->
+      <a href="/projects/physical-computing.html" class="next-project">
+        <div>
+          <p class="next-label">Next Project</p>
+          <p class="next-title">Physical Computing: Game-ified arduino prototype</p>
+        </div>
+        <span class="next-arrow">&rarr;</span>
+      </a>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-left">
+      <span class="footer-name">Mia Vong</span>
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+    </div>
+    <span class="footer-made">made with react.js + claude code + figma</span>
+  </footer>
+
+  <script>
+    const links = document.querySelectorAll('.sidebar-link');
+    const sections = [...links].map(l => document.querySelector(l.getAttribute('href')));
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          const active = [...links].find(l => l.getAttribute('href') === '#' + e.target.id);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => s && obs.observe(s));
+  </script>
+
+</body>
+</html>

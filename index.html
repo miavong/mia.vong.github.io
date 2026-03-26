@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mia Vong</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #09090f;
+      color: #f0f0f0;
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* Noise texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 998;
+      opacity: 0.7;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 18px 44px;
+    }
+
+    .nav-pill {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      padding: 10px 28px;
+      background: rgba(9,9,15,0.68);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 999px;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .nav-logo {
+      width: 30px; height: 30px;
+      border-radius: 4px;
+      object-fit: cover;
+      opacity: 0.9;
+      transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .nav-logo:hover { opacity: 1; transform: scale(1.07); }
+
+    .nav-link {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      color: #72728a;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover { color: #f0f0f0; }
+    .nav-link:focus-visible { outline: 1px solid rgba(248,113,113,0.6); outline-offset: 4px; border-radius: 2px; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-heading {
+      font-family: 'Solway', serif;
+      font-size: clamp(72px, 11vw, 136px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: #f0f0f0;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Gradient orbs — pool at the bottom */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-red   { width: 700px; height: 700px; background: radial-gradient(circle, rgba(220,40,40,0.80) 0%, transparent 60%);  bottom: -280px; left: -80px; }
+    .orb-blue  { width: 700px; height: 700px; background: radial-gradient(circle, rgba(30,70,240,0.75) 0%, transparent 60%);  bottom: -280px; left: 50%; transform: translateX(-50%); }
+    .orb-green { width: 700px; height: 700px; background: radial-gradient(circle, rgba(30,190,80,0.75) 0%, transparent 60%);  bottom: -280px; right: -80px; }
+
+    /* Horse SVG bg on hero */
+    .horse-bg-wrap {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      width: 155%;
+      max-width: 1600px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .horse-bg-wrap img {
+      width: 100%;
+      height: auto;
+      opacity: 0.50;
+    }
+
+    /* Page break / divider */
+    .hero-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* Projects */
+    .projects-section {
+      padding: 72px 28px 100px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card:focus-visible { outline: 2px solid rgba(248,113,113,0.4); outline-offset: 4px; }
+
+    .card-hover-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.88);
+      background: rgba(9,9,15,0.82);
+      border: 1px solid rgba(240,240,240,0.12);
+      backdrop-filter: blur(14px);
+      padding: 9px 20px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #f0f0f0;
+      opacity: 0;
+      transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 10;
+    }
+    .project-card:hover .card-hover-label { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+
+    .card-overlay {
+      position: absolute; inset: 0;
+      background: rgba(9,9,15,0);
+      transition: background 0.3s ease;
+    }
+    .project-card:hover .card-overlay { background: rgba(9,9,15,0.22); }
+
+    /* Card: E-Truck */
+    .card-etruck {
+      height: 400px;
+      background: #0b0f17;
+      margin-bottom: 18px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 6px 32px rgba(0,0,0,0.55), 0 0 80px rgba(56,189,248,0.04);
+    }
+    .card-etruck-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .card-etruck-inner img {
+      width: 88%; height: 86%;
+      object-fit: cover; border-radius: 10px; opacity: 0.8;
+    }
+
+    /* Card: iCare */
+    .card-icare {
+      height: 400px;
+      background: linear-gradient(135deg, #1e0b4a 0%, #5b21b6 30%, #7c3aed 55%, #be185d 82%, #f472b6 100%);
+      margin-bottom: 18px;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 6px 48px rgba(124,58,237,0.30), 0 24px 64px rgba(0,0,0,0.45);
+    }
+    .card-icare-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      gap: 20px; padding: 36px;
+      position: relative;
+    }
+    .card-icare-inner img {
+      height: 100%; max-height: 300px; width: auto;
+      object-fit: contain; border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.32);
+      flex-shrink: 0;
+    }
+
+    /* Bottom 2-col */
+    .card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    .card-physical {
+      height: 300px;
+      background: linear-gradient(135deg, #022c22 0%, #064e3b 40%, #0d9488 100%);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 6px 36px rgba(13,148,136,0.14), 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .card-personal {
+      height: 300px;
+      background: linear-gradient(135deg, #0f0f1e 0%, #1a1a3a 40%, #0f3460 70%, #4a1d6e 100%);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 6px 36px rgba(74,29,110,0.18), 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .card-inner-padded {
+      padding: 32px; width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .card-inner-padded img {
+      width: 84%; height: 72%;
+      object-fit: cover; border-radius: 10px; opacity: 0.72;
+    }
+
+    /* Card labels */
+    .card-label { padding: 16px 4px 24px; }
+    .card-label-title { font-size: 14px; font-weight: 500; color: #e0e0f0; letter-spacing: -0.01em; margin-bottom: 5px; }
+    .card-label-desc { font-size: 12.5px; color: #5a5a72; font-weight: 300; line-height: 1.5; }
+
+    /* Coming soon */
+    .coming-soon {
+      font-size: 10.5px; letter-spacing: 0.09em; text-transform: uppercase;
+      color: #60607a; border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 999px; padding: 4px 14px; font-weight: 400;
+    }
+
+    /* Footer */
+    footer {
+      padding: 22px 44px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-left { display: flex; align-items: center; gap: 20px; }
+    .footer-name { font-size: 13px; color: #72728a; }
+    .footer-link { font-size: 13px; color: #606080; text-decoration: none; transition: color 0.2s ease; }
+    .footer-link:hover { color: #8a8ab0; }
+    .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
+
+    @media (max-width: 768px) {
+      .card-etruck { height: 280px; }
+      .card-icare { height: 300px; }
+      .card-icare-inner img { max-height: 220px; }
+      .card-physical, .card-personal { height: 220px; }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 12px 16px; }
+      .nav-pill { gap: 20px; padding: 8px 16px; }
+      .nav-logo { width: 26px; height: 26px; }
+      .nav-link { font-size: 12px; }
+      .projects-section { padding: 40px 14px 60px; }
+      .card-row { grid-template-columns: 1fr; }
+      .card-etruck { height: 210px; }
+      .card-icare { height: 240px; }
+      .card-icare-inner { gap: 10px; padding: 16px; }
+      .card-icare-inner img { max-height: 180px; }
+      .card-physical, .card-personal { height: 190px; }
+      .card-inner-padded { padding: 20px; }
+      .orb-red, .orb-blue, .orb-green { width: 300px; height: 300px; filter: blur(70px); bottom: -120px; }
+      .orb-blue { left: 50%; transform: translateX(-50%); }
+      .horse-bg-wrap { width: 130%; }
+      .hero-heading { font-size: clamp(52px, 14vw, 90px); }
+      footer { padding: 20px; flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <div class="nav-pill">
+      <a href="/about.html" class="nav-link">about</a>
+      <a href="/index.html">
+        <img src="/brand_assets/mia_logo.png" alt="Mia Vong" class="nav-logo" />
+      </a>
+      <a href="#projects" class="nav-link">projects</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="orb orb-red"></div>
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-green"></div>
+
+    <!-- Horse SVG in background -->
+    <div class="horse-bg-wrap" aria-hidden="true">
+      <img src="/landing_page/horse.svg" alt="" />
+    </div>
+
+    <h1 class="hero-heading">Hi, I'm Mia</h1>
+  </section>
+
+  <div class="hero-divider"></div>
+
+  <!-- Projects -->
+  <section class="projects-section" id="projects">
+
+    <!-- E-Truck -->
+    <div>
+      <a href="/projects/e-truck.html" class="project-card card-etruck">
+        <div class="card-hover-label">view project &rarr;</div>
+        <div class="card-overlay"></div>
+        <div class="card-etruck-inner">
+          <img src="/assets/landing/etruck-a-cluster.png" alt="E-Truck HMI" />
+        </div>
+      </a>
+      <div class="card-label">
+        <p class="card-label-title">E-Truck: Electric truck human machine interface (HMI)</p>
+        <p class="card-label-desc">Prototyping two digital displays for a EV HMI clusters</p>
+      </div>
+    </div>
+
+    <!-- iCare -->
+    <div>
+      <a href="/projects/icare.html" class="project-card card-icare">
+        <div class="card-hover-label">view project &rarr;</div>
+        <div class="card-overlay"></div>
+        <div class="card-icare-inner">
+          <img src="/assets/landing/icare-carebot.png" alt="iCare App" />
+          <img src="/assets/landing/icare-submit-report.png" alt="iCare Chat" />
+        </div>
+      </a>
+      <div class="card-label">
+        <p class="card-label-title">iCare: AI conversational agent for mental health</p>
+        <p class="card-label-desc">Ethical design research for iCare's mental health chatbot</p>
+      </div>
+    </div>
+
+    <!-- Bottom row -->
+    <div class="card-row">
+      <div>
+        <a href="/projects/physical-computing.html" class="project-card card-physical">
+          <div class="card-hover-label">view project &rarr;</div>
+          <div class="card-overlay"></div>
+          <div class="card-inner-padded">
+            <img src="/assets/landing/physical-computing-img.png" alt="Physical Computing" />
+          </div>
+        </a>
+        <div class="card-label">
+          <p class="card-label-title">Physical Computing</p>
+          <p class="card-label-desc">Game-ified arduino prototype</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="project-card card-personal" style="cursor:default;">
+          <div class="card-inner-padded" style="flex-direction:column; gap:14px;">
+            <span class="coming-soon">coming soon</span>
+          </div>
+        </div>
+        <div class="card-label">
+          <p class="card-label-title">Personal Project</p>
+          <p class="card-label-desc">Coming soon!</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-left">
+      <span class="footer-name">Mia Vong</span>
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+    </div>
+    <span class="footer-made">made with react.js + claude code + figma</span>
+  </footer>
+
+
+</body>
+</html>

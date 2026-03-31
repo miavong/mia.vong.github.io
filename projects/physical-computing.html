@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Physical Computing — Mia Vong</title>
+  <title>Physical Computing - Mia Vong</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,18 +44,18 @@
     .back-link:hover .back-arrow,
     .back-link-mobile:hover .back-arrow { transform: translateX(-3px); }
 
-    .page-layout { display: flex; padding-top: 72px; min-height: 100vh; max-width: 1200px; margin: 0 auto; }
+    .page-layout { display: flex; padding-top: 72px; min-height: 100vh; max-width: 1340px; margin: 0 auto; }
 
     .sidebar {
       position: sticky; top: 72px; height: calc(100vh - 72px);
-      width: 200px; flex-shrink: 0;
-      padding: 48px 24px 48px 32px;
+      width: 180px; flex-shrink: 0;
+      padding: 48px 20px 48px 28px;
       display: flex; flex-direction: column; gap: 8px;
       border-right: 1px solid rgba(255,255,255,0.04);
       overflow-y: auto;
     }
-    .sidebar-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 12px; font-weight: 500; }
-    .sidebar-link { font-size: 13px; color: #72728a; text-decoration: none; letter-spacing: 0.02em; padding: 5px 0; transition: color 0.18s ease; display: block; line-height: 1.4; }
+    .sidebar-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7a9a; margin-bottom: 12px; font-weight: 500; }
+    .sidebar-link { font-size: 13px; color: #9898b0; text-decoration: none; letter-spacing: 0.02em; padding: 5px 0; transition: color 0.18s ease; display: block; line-height: 1.4; }
     .sidebar-link:hover { color: #b0b0cc; }
     .sidebar-link.active { color: #34d399; }
 
@@ -95,20 +95,20 @@
     }
     .meta-cell { padding: 22px 28px; background: #0f0f18; }
     .meta-cell + .meta-cell { border-left: 1px solid rgba(255,255,255,0.06); }
-    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 8px; font-weight: 500; }
+    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7a9a; margin-bottom: 8px; font-weight: 500; }
     .meta-value { font-size: 13.5px; color: #b0b0c8; font-weight: 400; line-height: 1.5; }
 
     /* Sections */
     .section { padding: 60px 80px; border-bottom: 1px solid rgba(255,255,255,0.04); }
     .section:last-child { border-bottom: none; }
-    .section-eyebrow { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #606080; margin-bottom: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+    .section-eyebrow { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #7a7a9a; margin-bottom: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
     .section-num { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; color: #34d399; background: rgba(52,211,153,0.1); border: 1px solid rgba(52,211,153,0.22); border-radius: 4px; padding: 2px 6px; letter-spacing: 0.04em; }
 
     /* Image wrap with chip label */
     .img-wrap { position: relative; display: block; }
     .img-chip { position: absolute; bottom: 12px; left: 12px; font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(9,9,15,0.78); border: 1px solid rgba(255,255,255,0.14); color: #b0b0c8; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: none; }
     .section-heading { font-family: 'Solway', serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 400; letter-spacing: -0.02em; color: #f0f0f0; margin-bottom: 20px; line-height: 1.2; }
-    .section-body { font-size: 15px; line-height: 1.82; color: #72728a; font-weight: 300; max-width: 640px; }
+    .section-body { font-size: 15px; line-height: 1.82; color: #9898b0; font-weight: 300; max-width: 640px; }
 
     .sp { margin-top: 32px; }
     .sp2 { margin-top: 48px; }
@@ -125,18 +125,27 @@
     .bom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 28px; }
     .bom-item { background: #0f0f18; border: 1px solid rgba(255,255,255,0.05); border-radius: 10px; padding: 16px 20px; display: flex; align-items: center; gap: 12px; }
     .bom-dot { width: 6px; height: 6px; border-radius: 50%; background: #34d399; opacity: 0.6; flex-shrink: 0; }
-    .bom-name { font-size: 13px; color: #8a8aa2; font-weight: 300; }
+    .bom-name { font-size: 13px; color: #a8a8c0; font-weight: 300; }
 
     /* Problem / Solution */
     .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
     .ps-card { background: #0f0f18; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 28px; }
-    .ps-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #606080; margin-bottom: 14px; font-weight: 500; }
-    .ps-text { font-size: 14px; line-height: 1.75; color: #72728a; font-weight: 300; }
+    .ps-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7a7a9a; margin-bottom: 14px; font-weight: 500; }
+    .ps-text { font-size: 14px; line-height: 1.75; color: #9898b0; font-weight: 300; }
     .ps-highlight { color: #34d399; }
 
     /* Code block */
-    .code-block { background: #080b10; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 28px; margin-top: 28px; overflow-x: auto; }
-    .code-file { font-size: 11px; letter-spacing: 0.06em; color: #606080; margin-bottom: 16px; font-family: 'Space Mono', monospace; }
+    .code-block-wrap {
+      position: relative; margin-top: 28px; max-width: 85%; border-radius: 12px; overflow: hidden;
+    }
+    .code-block-wrap::before,
+    .code-block-wrap::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 40px; z-index: 2; pointer-events: none;
+    }
+    .code-block-wrap::before { top: 0; background: linear-gradient(to bottom, #080b10, transparent); }
+    .code-block-wrap::after { bottom: 0; background: linear-gradient(to top, #080b10, transparent); }
+    .code-block { background: #080b10; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 28px; overflow-x: auto; max-height: 340px; overflow-y: auto; }
+    .code-file { font-size: 11px; letter-spacing: 0.06em; color: #7a7a9a; margin-bottom: 16px; font-family: 'Space Mono', monospace; }
     .code-block pre { font-family: 'Space Mono', monospace; font-size: 11.5px; line-height: 1.75; color: #7dd3b0; white-space: pre; }
     .code-comment { color: #3a5a4a; }
     .code-keyword { color: #c084fc; }
@@ -147,7 +156,7 @@
     .photo-grid-3 img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 10px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.35); }
 
     .photo-caption-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 8px; }
-    .photo-caption-grid p { font-size: 11.5px; color: #606080; line-height: 1.5; text-align: center; }
+    .photo-caption-grid p { font-size: 11.5px; color: #7a7a9a; line-height: 1.5; text-align: center; }
 
     /* Demo video */
     .video-placeholder {
@@ -156,11 +165,11 @@
       border-radius: 12px; display: flex; align-items: center; justify-content: center;
       margin-top: 32px;
     }
-    .video-placeholder-label { font-size: 13px; color: #606080; letter-spacing: 0.04em; }
+    .video-placeholder-label { font-size: 13px; color: #7a7a9a; letter-spacing: 0.04em; }
 
     /* Img */
     .img-full { width: 100%; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4); }
-    .img-caption { font-size: 12px; color: #606080; margin-top: 10px; }
+    .img-caption { font-size: 12px; color: #7a7a9a; margin-top: 10px; }
     .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
     .img-grid-2 img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.35); }
 
@@ -168,15 +177,32 @@
     .friends-img { width: 100%; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.5); }
 
     /* Next */
-    .next-project { display: flex; align-items: center; justify-content: space-between; padding: 24px 80px; background: #0f0f18; border-top: 1px solid rgba(255,255,255,0.04); text-decoration: none; color: inherit; transition: background 0.2s ease; }
-    .next-project:hover { background: #131320; }
-    .next-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 6px; }
-    .next-title { font-size: 16px; color: #c0c0d8; font-weight: 400; }
+    .next-project-wrap { display: flex; justify-content: center; padding: 48px 80px 60px; }
+    .next-project {
+      position: relative; display: inline-block;
+      padding: 14px 40px; border-radius: 999px;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #d0d0e8; text-decoration: none;
+      background: #09090f; z-index: 1;
+      transition: color 0.25s ease;
+    }
+    .next-project::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 999px; z-index: -1;
+      background: conic-gradient(from 0deg, #f87171, #fbbf24, #34d399, #38bdf8, #818cf8, #c084fc, #f472b6, #f87171);
+      opacity: 0.5; transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+    .next-project::after {
+      content: ''; position: absolute; inset: 0; border-radius: 999px; z-index: -1; background: #09090f;
+    }
+    .next-project:hover { color: #f0f0f0; }
+    .next-project:hover::before { opacity: 1; filter: blur(6px) brightness(1.3); }
+    .next-project:focus-visible { outline: 2px solid rgba(192,132,252,0.5); outline-offset: 4px; }
+    .next-project:active::before { opacity: 0.8; }
 
     footer { padding: 22px 44px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); }
     .footer-left { display: flex; align-items: center; gap: 20px; }
-    .footer-name { font-size: 13px; color: #72728a; }
-    .footer-link { font-size: 13px; color: #606080; text-decoration: none; transition: color 0.2s ease; }
+    .footer-name { font-size: 13px; color: #9898b0; }
+    .footer-link { font-size: 13px; color: #7a7a9a; text-decoration: none; transition: color 0.2s ease; }
     .footer-link:hover { color: #8a8ab0; }
     .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
 
@@ -191,7 +217,7 @@
       .ps-grid, .img-grid-2 { grid-template-columns: 1fr; }
       nav { padding: 16px 20px; }
       footer { padding: 20px; flex-direction: column; gap: 10px; text-align: center; }
-      .next-project { padding: 28px 48px; }
+      .next-project-wrap { padding: 36px 48px 48px; }
     }
 
     @media (max-width: 640px) {
@@ -202,7 +228,7 @@
       .back-link-mobile { padding: 16px 24px 0; }
       .page-layout { padding-top: 64px; }
       .case-hero, .section { padding: 24px 24px; }
-      .next-project { padding: 16px 20px; }
+      .next-project-wrap { padding: 28px 24px 36px; }
       .meta-grid { grid-template-columns: 1fr; }
       .meta-cell + .meta-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
       .bom-grid, .photo-grid-3, .photo-caption-grid { grid-template-columns: 1fr; }
@@ -234,8 +260,7 @@
       <p class="sidebar-label">Contents</p>
       <a href="#overview"      class="sidebar-link active">overview</a>
       <a href="#idea"          class="sidebar-link">idea</a>
-      <a href="#research"      class="sidebar-link">research</a>
-      <a href="#solution"      class="sidebar-link">solution</a>
+      <a href="#research"      class="sidebar-link">build</a>
       <a href="#final-product" class="sidebar-link">final product</a>
       <a href="#reflection"    class="sidebar-link">reflection</a>
     </aside>
@@ -263,10 +288,15 @@
         </div>
       </div>
 
+      <!-- Hero image -->
+      <div class="section" style="padding-top:32px; padding-bottom:32px;">
+        <img src="/assets/physical-computing/proto-no-bg.png" alt="Arduino prototype" class="img-full" style="width:50%; margin:0 auto;" />
+      </div>
+
       <!-- Overview -->
       <div class="section" id="overview">
         <p class="section-eyebrow"><span class="section-num">01</span>Overview</p>
-        <h2 class="section-heading">Summary</h2>
+        <h2 class="section-heading">Background</h2>
         <p class="section-body">
           This is just a fun final project for a physical computing class in the last couple weeks of my senior year of college. What's a better way to celebrate graduating than a cold beverage with friends!
         </p>
@@ -282,15 +312,16 @@
       <div class="section" id="idea">
         <p class="section-eyebrow"><span class="section-num">02</span>Idea</p>
         <div class="idea-callout">
-          <p class="idea-label">The Question</p>
+          <p class="idea-label">Design Question</p>
           <p class="idea-text">What if there was an interactive game that tracks how long it takes my friends to chug a beverage and display their performance?</p>
         </div>
       </div>
 
-      <!-- Research / BOM -->
+      <!-- Build -->
       <div class="section" id="research">
-        <p class="section-eyebrow"><span class="section-num">03</span>Research</p>
-        <h2 class="section-heading">Bill of Materials</h2>
+        <p class="section-eyebrow"><span class="section-num">03</span>Build</p>
+        <h2 class="section-heading">Game Development</h2>
+        <p class="section-eyebrow">Bill of Materials</p>
 
         <div class="bom-grid">
           <div class="bom-item"><span class="bom-dot"></span><span class="bom-name">Red and Green LEDs</span></div>
@@ -307,8 +338,41 @@
         <div class="sp2">
           <p class="section-eyebrow">Schematic</p>
           <div class="img-wrap">
-            <img src="/assets/physical-computing/photoresistor.png" alt="Circuit Schematic" class="img-full" />
+            <img src="/assets/physical-computing/schematic.png" alt="Circuit Schematic" class="img-full" />
             <span class="img-chip">Circuit Schematic</span>
+          </div>
+        </div>
+
+        <div class="sp2">
+          <h2 class="section-heading">The power of a photoresistor</h2>
+          <div class="ps-grid">
+            <div class="ps-card">
+              <p class="ps-label">Problem</p>
+              <p class="ps-text">I needed to track whether a beverage was present in game to start, stop, and track the user's performance. Variables like weight or distance would have to be calibrated before each use, halting the flow of the game.</p>
+            </div>
+            <div class="ps-card">
+              <p class="ps-label">Solution</p>
+              <p class="ps-text">I used a photoresistor (a passive semiconductor component whose resistance decreases as light intensity increases) to measure whether or not the beverage was present. Using a LED light and a photoresistor inside the box, I created a controlled environment where the beverage acted as a gate. When removed, the direct LED light across from the sensor triggers the start/stop of the game.</p>
+            </div>
+          </div>
+          <div class="img-grid-2 sp">
+            <div>
+              <img src="/assets/physical-computing/can-section.png" alt="Enclosed sensor environment" />
+              <p class="img-caption">no can enviroment = game on</p>
+            </div>
+            <div>
+              <img src="/assets/physical-computing/can-with-can.png" alt="Can as gate block" />
+              <p class="img-caption">present can enviroment = game off</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sp2">
+          <p class="section-eyebrow">Build Documentation</p>
+          <div class="photo-grid-3">
+            <img src="/assets/physical-computing/inside-box.png" alt="Inside the box" />
+            <img src="/assets/physical-computing/can-full.png" alt="Full prototype" />
+            <img src="/assets/physical-computing/top-of-proto.jpg" alt="Top of prototype" />
           </div>
         </div>
 
@@ -316,109 +380,178 @@
           <p class="section-eyebrow">Technical Implementation</p>
           <p class="section-body">Using many booleans and different functions to map the game's status, I built a prototype and wrote the code to execute this game.</p>
 
+          <div class="code-block-wrap">
           <div class="code-block">
-            <p class="code-file">// Arduino C++ — game state logic</p>
-            <pre><span class="code-comment">// Red LED on: game stopped, can present (lightThreshold &lt;150)</span>
-<span class="code-keyword">bool</span> gameRunning = <span class="code-keyword">false</span>;
-<span class="code-keyword">bool</span> gameFinished = <span class="code-keyword">false</span>;
+            <p class="code-file">// Arduino C++ - full game implementation</p>
+            <pre><span class="code-keyword">#include</span> <span class="code-string">&lt;SevSeg.h&gt;</span>  <span class="code-comment">// Include the SevSeg library</span>
 
-<span class="code-comment">// Can lifted (lightThreshold &gt;150) → countdown + green LED</span>
-canOn = <span class="code-keyword">false</span>;
-countdownSequence();
-startGame(); <span class="code-comment">// gameRunning = true</span>
+SevSeg sevseg; <span class="code-comment">// Define a seven-segment display</span>
 
-<span class="code-comment">// Can returned → timer stops, Red LED on</span>
-canOn = <span class="code-keyword">true</span>;
-gameRunning = <span class="code-keyword">false</span>;
-gameFinished = <span class="code-keyword">true</span>;
-stopGame();
+<span class="code-keyword">int</span> sensorLED = A3;  <span class="code-comment">// Sensor LED pin (Red LED)</span>
+<span class="code-keyword">int</span> greenLED = A1;  <span class="code-comment">// Green LED pin</span>
+<span class="code-keyword">int</span> redLED = A2;    <span class="code-comment">// Red LED pin</span>
+<span class="code-keyword">const int</span> sensorPin = A0; <span class="code-comment">// Photoresistor sensor pin</span>
 
-<span class="code-comment">// 7-seg shows elapsed time for 5s, then end-sequence message</span>
-displayElapsedTime();
-finishSequence(); <span class="code-comment">// based on elapsed time</span>
+<span class="code-keyword">const long</span> lightThreshold = 150;  <span class="code-comment">// Adjusted light threshold from serial monitor</span>
+<span class="code-keyword">bool</span> lastCanState = <span class="code-keyword">false</span>;  <span class="code-comment">// Track the previous can state</span>
+<span class="code-keyword">bool</span> gameRunning = <span class="code-keyword">false</span>; <span class="code-comment">// Tracks whether the game is running</span>
+<span class="code-keyword">bool</span> gameFinished = <span class="code-keyword">false</span>; <span class="code-comment">// Prevents immediate restart after finishing</span>
 
-<span class="code-comment">// Game resets to 0.0</span></pre>
+<span class="code-comment">// Assign variables</span>
+<span class="code-keyword">unsigned long</span> startTime = 0;
+<span class="code-keyword">unsigned long</span> elapsedTime = 0;
+<span class="code-keyword">unsigned long</span> displayStartTime = 0;
+
+<span class="code-keyword">void</span> setup() {
+  Serial.begin(9600);
+
+  <span class="code-comment">// 7-segment display setup from Github</span>
+  <span class="code-keyword">byte</span> numDigits = 4;
+  <span class="code-keyword">byte</span> digitPins[] = {2, 3, 4, 5};
+  <span class="code-keyword">byte</span> segmentPins[] = {6, 7, 8, 9, 10, 11, 12, 13};
+  <span class="code-keyword">bool</span> resistorsOnSegments = <span class="code-keyword">false</span>;
+  <span class="code-keyword">byte</span> hardwareConfig = COMMON_CATHODE;
+  <span class="code-keyword">bool</span> updateWithDelays = <span class="code-keyword">false</span>;
+  <span class="code-keyword">bool</span> leadingZeros = <span class="code-keyword">false</span>;
+  <span class="code-keyword">bool</span> disableDecPoint = <span class="code-keyword">false</span>;
+
+  sevseg.begin(hardwareConfig, numDigits, digitPins, segmentPins,
+    resistorsOnSegments, updateWithDelays, leadingZeros, disableDecPoint);
+  sevseg.setBrightness(80);
+
+  <span class="code-comment">// Initialize LEDs as outputs</span>
+  pinMode(greenLED, OUTPUT);
+  pinMode(redLED, OUTPUT);
+  pinMode(sensorLED, OUTPUT);
+
+  digitalWrite(redLED, HIGH); <span class="code-comment">// Initially start with red LED on</span>
+  sevseg.setChars(<span class="code-string">"bEEr"</span>); <span class="code-comment">// Initial intro on display</span>
+}
+
+<span class="code-keyword">void</span> loop() {
+  digitalWrite(sensorLED, HIGH);
+  <span class="code-keyword">long</span> sensorValue = analogRead(sensorPin);
+
+  <span class="code-comment">// If sensor value &lt; threshold (dark inside box) the can is on</span>
+  <span class="code-keyword">bool</span> canOn = (sensorValue &lt; lightThreshold);
+
+  <span class="code-comment">// Detect when can is lifted - start the game</span>
+  <span class="code-keyword">if</span> (lastCanState &amp;&amp; !canOn &amp;&amp; !gameRunning &amp;&amp; !gameFinished) {
+    startGame();
+  }
+
+  <span class="code-comment">// Detect when can is back - stop the game</span>
+  <span class="code-keyword">if</span> (!lastCanState &amp;&amp; canOn &amp;&amp; gameRunning) {
+    stopGame();
+  }
+
+  lastCanState = canOn;
+
+  <span class="code-comment">// Update timer display while game is running</span>
+  <span class="code-keyword">if</span> (gameRunning) {
+    <span class="code-keyword">unsigned long</span> currentTime = millis();
+    elapsedTime = (currentTime - startTime) / 100;
+    sevseg.setNumber(elapsedTime, 1);
+  }
+
+  <span class="code-comment">// After 5 seconds show end-game message and reset</span>
+  <span class="code-keyword">if</span> (!gameRunning &amp;&amp; displayStartTime &gt; 0 &amp;&amp; millis() - displayStartTime &gt; 5000) {
+    finishSequence();
+    sevseg.setNumber(0, 1);
+    displayStartTime = 0;
+    gameFinished = <span class="code-keyword">false</span>;
+  }
+
+  sevseg.refreshDisplay();
+}
+
+<span class="code-comment">// Function to start countdown and begin timing</span>
+<span class="code-keyword">void</span> startGame() {
+  gameFinished = <span class="code-keyword">false</span>;
+  countdownSequence();
+  digitalWrite(greenLED, HIGH);
+  digitalWrite(redLED, LOW);
+  startTime = millis();
+  gameRunning = <span class="code-keyword">true</span>;
+}
+
+<span class="code-comment">// Function to stop timer and display end-game result</span>
+<span class="code-keyword">void</span> stopGame() {
+  gameRunning = <span class="code-keyword">false</span>;
+  displayStartTime = millis();
+  gameFinished = <span class="code-keyword">true</span>;
+  digitalWrite(greenLED, LOW);
+  digitalWrite(redLED, HIGH);
+  sevseg.setNumber(elapsedTime, 1);
+}
+
+<span class="code-comment">// Function that runs the countdown sequence</span>
+<span class="code-keyword">void</span> countdownSequence() {
+  <span class="code-keyword">int</span> countdown = 3;
+  <span class="code-keyword">for</span> (countdown; countdown &gt;= 0; countdown--) {
+    <span class="code-keyword">if</span> (countdown &gt; 0) {
+      sevseg.setNumber(countdown);
+    } <span class="code-keyword">else</span> {
+      sevseg.setChars(<span class="code-string">"GO"</span>);
+    }
+    <span class="code-keyword">unsigned long</span> startMillis = millis();
+    <span class="code-keyword">while</span> (millis() - startMillis &lt; 1000) {
+      sevseg.refreshDisplay();
+    }
+  }
+}
+
+<span class="code-comment">// Function displayed after the game is finished</span>
+<span class="code-keyword">void</span> finishSequence() {
+  <span class="code-keyword">unsigned long</span> finishStartTime = millis();
+
+  <span class="code-keyword">if</span> (elapsedTime &lt; 300) {
+    sevseg.setChars(<span class="code-string">"rAd."</span>);  <span class="code-comment">// Less than 30 seconds</span>
+  } <span class="code-keyword">else if</span> (elapsedTime &lt; 600) {
+    sevseg.setChars(<span class="code-string">"Good."</span>); <span class="code-comment">// Less than 60 seconds</span>
+  } <span class="code-keyword">else</span> {
+    sevseg.setChars(<span class="code-string">"EH."</span>);   <span class="code-comment">// More than 1 minute</span>
+  }
+
+  <span class="code-keyword">while</span> (millis() - finishStartTime &lt; 3000) {
+    sevseg.refreshDisplay();
+  }
+}</pre>
           </div>
-        </div>
-      </div>
-
-      <!-- Solution -->
-      <div class="section" id="solution">
-        <p class="section-eyebrow"><span class="section-num">04</span>Solution</p>
-        <h2 class="section-heading">The power of a photoresistor</h2>
-
-        <div class="ps-grid">
-          <div class="ps-card">
-            <p class="ps-label">Problem</p>
-            <p class="ps-text">I needed to track whether a can/beverage was present in the starting hold or not to start/stop/track the user's performance. Variables like weight or distance would have to be calibrated before each use, halting the flow of the game.</p>
-          </div>
-          <div class="ps-card">
-            <p class="ps-label">Solution</p>
-            <p class="ps-text">Thinking outside of the box... but really more like <span class="ps-highlight">inside</span> of the box — I used a photoresistor (a passive semiconductor component whose resistance decreases as light intensity increases) to measure whether or not the beverage was present. Using a LED light and a photoresistor inside the box, I created a controlled environment where the beverage acted as a gate to trigger the timer.</p>
-          </div>
-        </div>
-
-        <div class="sp2">
-          <div class="img-grid-2">
-            <div>
-              <img src="/assets/physical-computing/can-with-can.png" alt="Can as gate block" />
-              <p class="img-caption">can as gate block</p>
-            </div>
-            <div>
-              <img src="/assets/physical-computing/can-section.png" alt="Enclosed sensor environment" />
-              <p class="img-caption">enclosed sensor environment</p>
-            </div>
           </div>
         </div>
       </div>
 
       <!-- Final Product -->
       <div class="section" id="final-product">
-        <p class="section-eyebrow"><span class="section-num">05</span>Final Product</p>
-        <h2 class="section-heading">Build documentation</h2>
-
-        <div class="photo-grid-3">
-          <img src="/assets/physical-computing/inside-box.png" alt="Set-up" />
-          <img src="/assets/physical-computing/can-full.png" alt="Build 02" />
-          <img src="/assets/physical-computing/prototype-game.png" alt="Build 03" />
-          <img src="/assets/physical-computing/can-section.png" alt="Testing light threshold" />
-          <img src="/assets/physical-computing/can-with-can.png" alt="Build 05" />
-          <img src="/assets/physical-computing/grad-mia.png" alt="Final assembled" />
-        </div>
-        <div class="photo-caption-grid">
-          <p>set-up</p>
-          <p></p>
-          <p></p>
-          <p>testing the light threshold in absence of the can to trigger the green light and timer</p>
-          <p></p>
-          <p></p>
-        </div>
+        <p class="section-eyebrow"><span class="section-num">04</span>Final Product</p>
+        <h2 class="section-heading">Chugging in action</h2>
 
         <div class="sp2">
           <p class="section-eyebrow">Demo</p>
-          <div class="video-placeholder">
-            <p class="video-placeholder-label">Private YouTube demo — 1 minute &nbsp;·&nbsp; short gif of product in use</p>
+          <div style="position:relative; width:100%; padding-bottom:56.25%; border-radius:12px; overflow:hidden; box-shadow:0 0 0 1px rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4);">
+            <iframe src="https://www.youtube.com/embed/1M_VF2JQow8" title="Physical Computing Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%; border-radius:12px;"></iframe>
           </div>
         </div>
       </div>
 
       <!-- Reflection -->
       <div class="section" id="reflection">
-        <p class="section-eyebrow"><span class="section-num">06</span>Reflection</p>
-        <h2 class="section-heading">What I learned</h2>
+        <p class="section-eyebrow"><span class="section-num">05</span>Reflection</p>
+        <h2 class="section-heading">I lost</h2>
         <p class="section-body">
-          This project taught me that creative constraints breed creative solutions. Instead of reaching for an expensive sensor, stepping back and thinking about the physics of the problem led me to a simple, reliable answer — a photoresistor inside a cardboard box. Sometimes the best engineering is the kind that makes you laugh at how obvious it was in hindsight.
+          This was such a fun project because it bridged hardware and software using basic (and affordable) circuit components. It pushed me to consider how uncontrolled variables such as sensor calibration and human feedback shape the user experience. Building this game also reinforced the importance of rapid prototyping and experimentation in designing playful, human-centered systems.
         </p>
+
+        <div class="sp2">
+          <img src="/assets/physical-computing/grad-mia.png" alt="Mia at graduation" class="img-full" style="width:30%; margin:0 auto;" />
+        </div>
       </div>
 
       <!-- Next -->
-      <a href="/index.html" class="next-project">
-        <div>
-          <p class="next-label">Back to</p>
-          <p class="next-title">All Projects</p>
-        </div>
-        <span style="font-size:20px; color:#72728a;">&larr;</span>
-      </a>
+      <div class="next-project-wrap">
+        <a href="/index.html#projects" class="next-project">all projects →</a>
+      </div>
 
     </div>
   </div>
@@ -426,9 +559,9 @@ finishSequence(); <span class="code-comment">// based on elapsed time</span>
   <footer>
     <div class="footer-left">
       <span class="footer-name">Mia Vong</span>
-      <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/miavong/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
     </div>
-    <span class="footer-made">made with react.js + claude code + figma</span>
+    <span class="footer-made">made with claude code + figma</span>
   </footer>
 
   <script>

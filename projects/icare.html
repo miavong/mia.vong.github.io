@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iCare — Mia Vong</title>
+  <title>iCare - Mia Vong</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -44,24 +44,24 @@
     .back-link:hover .back-arrow,
     .back-link-mobile:hover .back-arrow { transform: translateX(-3px); }
 
-    .page-layout { display: flex; padding-top: 72px; min-height: 100vh; max-width: 1200px; margin: 0 auto; }
+    .page-layout { display: flex; padding-top: 72px; min-height: 100vh; max-width: 1340px; margin: 0 auto; }
 
     .sidebar {
       position: sticky; top: 72px; height: calc(100vh - 72px);
-      width: 200px; flex-shrink: 0;
-      padding: 48px 24px 48px 32px;
+      width: 180px; flex-shrink: 0;
+      padding: 48px 20px 48px 28px;
       display: flex; flex-direction: column; gap: 8px;
       border-right: 1px solid rgba(255,255,255,0.04);
       overflow-y: auto;
     }
-    .sidebar-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 12px; font-weight: 500; }
-    .sidebar-link { font-size: 13px; color: #72728a; text-decoration: none; letter-spacing: 0.02em; padding: 5px 0; transition: color 0.18s ease; display: block; line-height: 1.4; }
+    .sidebar-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7a9a; margin-bottom: 12px; font-weight: 500; }
+    .sidebar-link { font-size: 13px; color: #9898b0; text-decoration: none; letter-spacing: 0.02em; padding: 5px 0; transition: color 0.18s ease; display: block; line-height: 1.4; }
     .sidebar-link:hover { color: #b0b0cc; }
     .sidebar-link.active { color: #c084fc; }
 
     .main-content { flex: 1; min-width: 0; padding: 0 0 100px; }
 
-    /* Hero — purple gradient */
+    /* Hero - purple gradient */
     .case-hero {
       padding: 0;
       position: relative; overflow: hidden;
@@ -96,20 +96,20 @@
     }
     .meta-cell { padding: 22px 28px; background: #0f0f18; }
     .meta-cell + .meta-cell { border-left: 1px solid rgba(255,255,255,0.06); }
-    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 8px; font-weight: 500; }
+    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7a9a; margin-bottom: 8px; font-weight: 500; }
     .meta-value { font-size: 13.5px; color: #b0b0c8; font-weight: 400; line-height: 1.5; }
 
     /* Sections */
     .section { padding: 60px 80px; border-bottom: 1px solid rgba(255,255,255,0.04); }
     .section:last-child { border-bottom: none; }
-    .section-eyebrow { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #606080; margin-bottom: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+    .section-eyebrow { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #7a7a9a; margin-bottom: 14px; font-weight: 500; display: flex; align-items: center; gap: 10px; }
     .section-num { font-family: 'Space Mono', monospace; font-size: 9px; font-weight: 700; color: #c084fc; background: rgba(192,132,252,0.1); border: 1px solid rgba(192,132,252,0.22); border-radius: 4px; padding: 2px 6px; letter-spacing: 0.04em; }
 
     /* Image wrap with chip label */
     .img-wrap { position: relative; display: block; }
     .img-chip { position: absolute; bottom: 12px; left: 12px; font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(9,9,15,0.78); border: 1px solid rgba(255,255,255,0.14); color: #b0b0c8; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: none; }
     .section-heading { font-family: 'Solway', serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 400; letter-spacing: -0.02em; color: #f0f0f0; margin-bottom: 20px; line-height: 1.2; }
-    .section-body { font-size: 15px; line-height: 1.82; color: #72728a; font-weight: 300; max-width: 640px; }
+    .section-body { font-size: 15px; line-height: 1.82; color: #9898b0; font-weight: 300; max-width: 640px; }
 
     .sp { margin-top: 32px; }
     .sp2 { margin-top: 48px; }
@@ -134,7 +134,7 @@
     .research-area { padding: 28px; background: #0f0f18; }
     .research-area + .research-area { border-top: 1px solid rgba(255,255,255,0.05); }
     .ra-title { font-size: 14px; font-weight: 500; color: #d0b8f0; margin-bottom: 10px; }
-    .ra-body { font-size: 14px; line-height: 1.75; color: #82829a; font-weight: 300; }
+    .ra-body { font-size: 14px; line-height: 1.75; color: #a0a0b8; font-weight: 300; }
 
     /* Solutions */
     .solution-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
@@ -146,9 +146,9 @@
     /* Before/After */
     .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 32px; }
     .ba-block { min-width: 0; }
-    .ba-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #72728a; margin-bottom: 10px; font-weight: 500; }
+    .ba-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #9898b0; margin-bottom: 10px; font-weight: 500; }
     .ba-img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.35); }
-    .ba-caption { font-size: 12px; color: #606080; margin-top: 8px; line-height: 1.5; }
+    .ba-caption { font-size: 12px; color: #7a7a9a; margin-top: 8px; line-height: 1.5; }
 
     /* Phone strip */
     .phone-strip { display: flex; gap: 16px; justify-content: center; align-items: flex-end; margin-top: 36px; padding: 40px 0 0; }
@@ -157,23 +157,63 @@
 
     /* Img */
     .img-full { width: 100%; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4); }
-    .img-caption { font-size: 12px; color: #606080; margin-top: 10px; }
+    .img-caption { font-size: 12px; color: #7a7a9a; margin-top: 10px; }
+
+    /* Layered images */
+    .layered-imgs {
+      position: relative; height: 420px; margin-top: 36px;
+    }
+    .layered-imgs img {
+      position: absolute; border-radius: 12px; display: block;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 12px 48px rgba(0,0,0,0.5);
+    }
+    .layered-imgs .layer-back {
+      width: 55%; top: 0; left: 0; z-index: 1;
+    }
+    .layered-imgs .layer-front {
+      width: 45%; bottom: 0; right: 0; z-index: 2;
+    }
+
+    /* Gif strip */
+    .gif-strip {
+      display: flex; flex-direction: column; gap: 32px; margin-top: 32px;
+    }
+    .gif-strip img {
+      width: 100%; border-radius: 12px; display: block;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
+    }
 
     /* Source */
     .source-block { background: #0c0c14; border: 1px solid rgba(255,255,255,0.04); border-radius: 10px; padding: 20px 24px; margin-top: 24px; }
-    .source-text { font-size: 12px; line-height: 1.7; color: #606080; font-weight: 300; }
+    .source-text { font-size: 12px; line-height: 1.7; color: #7a7a9a; font-weight: 300; }
 
     /* Next */
-    .next-project { display: flex; align-items: center; justify-content: space-between; padding: 24px 80px; background: #0f0f18; border-top: 1px solid rgba(255,255,255,0.04); text-decoration: none; color: inherit; transition: background 0.2s ease; }
-    .next-project:hover { background: #131320; }
-    .next-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 6px; }
-    .next-title { font-size: 16px; color: #c0c0d8; font-weight: 400; }
-    .next-arrow { font-size: 20px; color: #72728a; }
+    .next-project-wrap { display: flex; justify-content: center; padding: 48px 80px 60px; }
+    .next-project {
+      position: relative; display: inline-block;
+      padding: 14px 40px; border-radius: 999px;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #d0d0e8; text-decoration: none;
+      background: #09090f; z-index: 1;
+      transition: color 0.25s ease;
+    }
+    .next-project::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 999px; z-index: -1;
+      background: conic-gradient(from 0deg, #f87171, #fbbf24, #34d399, #38bdf8, #818cf8, #c084fc, #f472b6, #f87171);
+      opacity: 0.5; transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+    .next-project::after {
+      content: ''; position: absolute; inset: 0; border-radius: 999px; z-index: -1; background: #09090f;
+    }
+    .next-project:hover { color: #f0f0f0; }
+    .next-project:hover::before { opacity: 1; filter: blur(6px) brightness(1.3); }
+    .next-project:focus-visible { outline: 2px solid rgba(192,132,252,0.5); outline-offset: 4px; }
+    .next-project:active::before { opacity: 0.8; }
 
     footer { padding: 22px 44px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); }
     .footer-left { display: flex; align-items: center; gap: 20px; }
-    .footer-name { font-size: 13px; color: #72728a; }
-    .footer-link { font-size: 13px; color: #606080; text-decoration: none; transition: color 0.2s ease; }
+    .footer-name { font-size: 13px; color: #9898b0; }
+    .footer-link { font-size: 13px; color: #7a7a9a; text-decoration: none; transition: color 0.2s ease; }
     .footer-link:hover { color: #8a8ab0; }
     .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
 
@@ -185,6 +225,7 @@
       .back-link-mobile:hover { color: #f0f0f0; }
       .hero-grad, .section { padding: 40px 48px; }
       .stats-grid, .solution-grid, .before-after { grid-template-columns: 1fr; }
+      .layered-imgs { height: 300px; }
       .phone-strip { flex-wrap: wrap; justify-content: center; }
       .phone-strip img { height: 240px; width: auto; }
       .phone-strip img:nth-child(2) { height: 260px; }
@@ -200,6 +241,9 @@
       .back-link-mobile { padding: 16px 24px 0; }
       .page-layout { padding-top: 64px; }
       .hero-grad, .section { padding: 24px 24px; }
+      .layered-imgs { height: 220px; }
+      .layered-imgs .layer-back { width: 60%; }
+      .layered-imgs .layer-front { width: 50%; }
       .meta-grid { grid-template-columns: 1fr; }
       .meta-cell + .meta-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
       .stat-cell + .stat-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.05); }
@@ -233,8 +277,8 @@
       <p class="sidebar-label">Contents</p>
       <a href="#overview"      class="sidebar-link active">overview</a>
       <a href="#problem"       class="sidebar-link">problem</a>
-      <a href="#research"      class="sidebar-link">research</a>
       <a href="#solution"      class="sidebar-link">solution</a>
+      <a href="#research"      class="sidebar-link">research</a>
       <a href="#final-product" class="sidebar-link">final product</a>
       <a href="#reflection"    class="sidebar-link">reflection</a>
     </aside>
@@ -264,6 +308,11 @@
         </div>
       </div>
 
+      <!-- Paper flipping hero -->
+      <div class="section" style="padding-top:32px; padding-bottom:32px;">
+        <img src="/assets/icare/iCare-paper-flipping.gif" alt="iCare research paper flipping" class="img-full" />
+      </div>
+
       <!-- Overview -->
       <div class="section" id="overview">
         <p class="section-eyebrow"><span class="section-num">01</span>Overview</p>
@@ -272,12 +321,6 @@
           iCare is a virtual mental health assistant developed at the University of Washington, designed to provide empathetic AI-powered therapeutic support. As a design researcher, I investigated the ethical risks of deploying a mental health chatbot and translated those findings into actionable design interventions.
         </p>
 
-        <!-- App preview -->
-        <div class="phone-strip">
-          <img src="/assets/icare/chatbot-page.png" alt="iCare Home" />
-          <img src="/assets/icare/page-2.png" alt="iCare Chat" />
-          <img src="/assets/icare/page-3.png" alt="iCare Resources" />
-        </div>
       </div>
 
       <!-- Problem -->
@@ -307,148 +350,155 @@
           </div>
         </div>
 
-        <p class="section-body sp2">
+      </div>
+
+      <!-- Solution -->
+      <div class="section" id="solution">
+        <p class="section-eyebrow"><span class="section-num">03</span>Solution</p>
+        <h2 class="section-heading">CareBot Redesign</h2>
+        <p class="section-body">
           While the original iCare system demonstrates the potential of AI-driven mental health support, my work builds on this foundation by addressing critical gaps in ethical design, accessibility, and user safety through a human-centered UX approach.
         </p>
+
+        <div class="sp2">
+          <img src="/assets/icare/chatbot-final-product.png" alt="iCare redesigned chatbot" class="img-full" />
+        </div>
       </div>
 
       <!-- Research -->
       <div class="section" id="research">
-        <p class="section-eyebrow"><span class="section-num">03</span>Research</p>
-        <h2 class="section-heading">Literature review across three challenge areas</h2>
+        <p class="section-eyebrow"><span class="section-num">04</span>Research</p>
+        <h2 class="section-heading">Literature review</h2>
         <p class="section-body">
-          This project began with a literature review examining three challenges in AI mental health design: ethical risk, transparency, and digital accessibility. Rather than jumping straight to solutions, I needed to understand the landscape of what could go wrong and what responsible design looked like.
+          I examined three challenges in AI mental health design: ethical risk, transparency, and digital accessibility. Rather than jumping straight to solutions, I needed to understand the current AI chat landscape and what responsible design looked like.
         </p>
 
         <div class="research-areas sp">
           <div class="research-area">
             <p class="ra-title">Ethical Risks</p>
-            <p class="ra-body">AI chatbots in mental health spaces can produce harmful outputs, exploit regulatory loopholes (many classify as "general wellness tools" to avoid FDA review), and create dangerous over-reliance. A 2024 lawsuit against Character.AI — where a 14-year-old died by suicide after extended chatbot interaction with no crisis resources surfacing — made the stakes viscerally clear.</p>
+            <p class="ra-body">AI chatbots in mental health spaces can produce harmful outputs, exploit regulatory loopholes (many classify as "general wellness tools" to avoid FDA review), and create dangerous over-reliance. A 2024 lawsuit against Character.AI claimed that the chatbot exteneded harmful interactions with no crisis resources.</p>
           </div>
           <div class="research-area">
             <p class="ra-title">Transparency &amp; Trust</p>
-            <p class="ra-body">Research shows users are less likely to over-trust AI when the interface acknowledges the model's limitations. The goal isn't distrust or blind reliance — it's algorithmic vigilance: informed, healthy skepticism. Designing for transparency means surfacing limitations, protecting data privacy, and building feedback loops.</p>
+            <p class="ra-body">Research shows users are less likely to over-trust AI when the interface acknowledges the model's limitations. The goal isn't to build distrust, but to keep the user informed. Designing for transparency means surfacing limitations, protecting data privacy, and building feedback loops.</p>
           </div>
           <div class="research-area">
             <p class="ra-title">Accessibility</p>
-            <p class="ra-body">iCare's users are likely to include people already managing mental health conditions, many of whom may also live with disabilities. I reviewed ADA Title II requirements and WCAG 2.1 guidelines — four principles: perceivable, operable, understandable, robust — and evaluated how iCare's original design failed against each.</p>
+            <p class="ra-body">iCare's users are likely to include people already managing mental health conditions, many of whom may also live with disabilities. I reviewed ADA Title II requirements and WCAG 2.1 guidelines - four principles: perceivable, operable, understandable, robust - and evaluated how iCare's original design failed against each.</p>
           </div>
         </div>
 
         <div class="sp2">
-          <img src="https://placehold.co/860x360/0f0f18/2a2a3a?text=Literature+Research+%E2%80%94+GIF+placeholder" alt="Research pages" class="img-full" />
-        </div>
-      </div>
-
-      <!-- Solution -->
-      <div class="section" id="solution">
-        <p class="section-eyebrow"><span class="section-num">04</span>Solution</p>
-        <h2 class="section-heading">Four design interventions</h2>
-
-        <div class="solution-grid">
-          <div class="solution-card">
-            <span class="solution-arrow">→</span>
-            <p class="solution-title">Increase Transparency</p>
-            <p class="solution-desc">Clear disclaimers, acknowledgment flows, and visible system limitations</p>
-          </div>
-          <div class="solution-card">
-            <span class="solution-arrow">→</span>
-            <p class="solution-title">Improve Safety in Crisis Scenarios</p>
-            <p class="solution-desc">Real-time crisis detection and escalation to external support resources</p>
-          </div>
-          <div class="solution-card">
-            <span class="solution-arrow">→</span>
-            <p class="solution-title">Enhance Accessibility &amp; Inclusivity</p>
-            <p class="solution-desc">Simplified UI, adaptable layouts, and support for users with cognitive and visual disabilities</p>
-          </div>
-          <div class="solution-card">
-            <span class="solution-arrow">→</span>
-            <p class="solution-title">Create Feedback &amp; Accountability Loops</p>
-            <p class="solution-desc">Reporting tools and user feedback mechanisms to continuously improve the system</p>
-          </div>
+          <p class="section-eyebrow">User Flow</p>
+          <img src="/assets/icare/i-care-user-flow.png" alt="iCare user flow diagram" class="img-full" />
+          <p class="img-caption">Mapping the conversational flow and risk mitigation pathways</p>
         </div>
       </div>
 
       <!-- Final Product -->
       <div class="section" id="final-product">
         <p class="section-eyebrow"><span class="section-num">05</span>Final Product</p>
-        <h2 class="section-heading">iCare's CareBot — design interventions</h2>
+        <h2 class="section-heading">iCare's CareBot</h2>
 
-        <!-- Acknowledgment page before/after -->
+        <!-- Before / After -->
         <div class="sp">
-          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:20px;">Acknowledgment Page</p>
+          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:20px;">Before &amp; After</p>
           <div class="before-after">
             <div class="ba-block">
               <p class="ba-label">Before</p>
-              <img src="https://placehold.co/420x320/0f0f18/2a2a3a?text=Before+%E2%80%94+No+Acknowledgment" alt="Before: no acknowledgment" class="ba-img" />
+              <img src="/assets/icare/before-chatbot-page.png" alt="Original chatbot design" class="ba-img" />
+              <p class="ba-caption">Original iCare chatbot with no ethical safeguards or crisis detection</p>
             </div>
             <div class="ba-block">
               <p class="ba-label">After</p>
-              <img src="/assets/icare/page-2.png" alt="After: acknowledgment flow" class="ba-img" />
-              <p class="ba-caption">Users must explicitly acknowledge AI limitations before engaging with CareBot</p>
+              <img src="/assets/icare/after-chatbot-page.jpg" alt="Redesigned chatbot" class="ba-img" />
+              <p class="ba-caption">Redesigned with acknowledgment flows, crisis alerts, and transparency features</p>
             </div>
           </div>
         </div>
 
-        <!-- Submit report -->
+        <!-- Four design interventions -->
         <div class="sp2">
-          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:20px;">Submit Risk Report</p>
-          <div class="before-after">
-            <div class="ba-block">
-              <p class="ba-label">Before</p>
-              <img src="https://placehold.co/420x320/0f0f18/2a2a3a?text=Before+%E2%80%94+No+Reporting" alt="Before" class="ba-img" />
+          <h2 class="section-heading">Four design interventions</h2>
+          <div class="solution-grid">
+            <div class="solution-card">
+              <span class="solution-arrow">→</span>
+              <p class="solution-title">Increase transparency</p>
+              <p class="solution-desc">Clear disclaimers, acknowledgment flows, and visible system limitations</p>
             </div>
-            <div class="ba-block">
-              <p class="ba-label">After</p>
-              <img src="/assets/icare/screenshot-1.png" alt="After: submit report" class="ba-img" />
-              <p class="ba-caption">Users can flag harmful or inaccurate responses directly from the chat</p>
+            <div class="solution-card">
+              <span class="solution-arrow">→</span>
+              <p class="solution-title">Improve safety in crisis scenarios</p>
+              <p class="solution-desc">Real-time crisis detection and escalation to external support resources</p>
+            </div>
+            <div class="solution-card">
+              <span class="solution-arrow">→</span>
+              <p class="solution-title">Enhance accessibility &amp; inclusivity</p>
+              <p class="solution-desc">Simplified UI, adaptable layouts, and support for users with cognitive and visual disabilities</p>
+            </div>
+            <div class="solution-card">
+              <span class="solution-arrow">→</span>
+              <p class="solution-title">Create feedback &amp; accountability Loops</p>
+              <p class="solution-desc">Reporting tools and user feedback mechanisms to continuously improve the system</p>
             </div>
           </div>
         </div>
 
-        <!-- High risk alert -->
+        <!-- Final product gifs -->
         <div class="sp2">
-          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:16px;">High Risk Alert</p>
-          <img src="/assets/icare/page-3.png" alt="High risk alert" class="img-full" />
-          <p class="img-caption">Real-time crisis detection escalates to external mental health resources</p>
-        </div>
-
-        <!-- Final screens -->
-        <div class="phone-strip sp2">
-          <img src="/assets/icare/chatbot-page.png" alt="Acknowledgment" />
-          <img src="/assets/icare/page-2.png" alt="Chat + Risk" />
-          <img src="/assets/icare/page-3.png" alt="High Risk Alert" />
-          <img src="/assets/icare/screenshot-1.png" alt="Submit Report" />
+          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:20px;">Design Interventions</p>
+          <div class="gif-strip">
+            <div>
+              <img src="/assets/icare/acknowledgement-page.gif" alt="Acknowledgement page flow" />
+              <p class="img-caption" style="text-align:center; margin-top:12px;">Acknowledgement Page</p>
+            </div>
+            <div>
+              <img src="/assets/icare/submit-report.gif" alt="Submit report flow" />
+              <p class="img-caption" style="text-align:center; margin-top:12px;">Submit Report</p>
+            </div>
+            <div>
+              <img src="/assets/icare/high-risk.gif" alt="High risk alert flow" />
+              <p class="img-caption" style="text-align:center; margin-top:12px;">High Risk Alert</p>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Reflection -->
       <div class="section" id="reflection">
         <p class="section-eyebrow"><span class="section-num">06</span>Reflection</p>
-        <h2 class="section-heading">What I learned</h2>
+        <h2 class="section-heading">We're just scratching the surface</h2>
         <p class="section-body">
           There is still a lot to be researched and iterated on for iCare's Carebot. With what seems like an ever-changing AI landscape, I think that being a part of this project was a great introduction to start thinking about how we can leverage AI to help underrepresented groups of people.
-        </p>
-        <p class="section-body sp">
-          My favorite part of this project was collaborating with the AI engineers, who were predominantly PhD students at the University of Washington, because they were also so incredibly smart — I felt like I was learning something new after every conversation.
         </p>
 
         <div class="sp2">
           <p class="section-eyebrow">Sources</p>
           <div class="source-block">
-            <p class="source-text">R. Mavila, S. Jaiswal, R. Naswa, W. Yuwen, B. Erdly and D. Si, "iCare - An AI - Powered Virtual Assistant for Mental Health," 2024 IEEE 12th International Conference on Healthcare Informatics (ICHI), Orlando, FL, USA, 2024, pp. 466-471, doi: 10.1109/ICHI61247.2024.00066.</p>
+            <p class="source-text" style="padding-left:28px; text-indent:-28px;">Coghlan, S., Leins, K., Sheldrick, S., Cheong, M., Gooding, P., &amp; D'Alfonso, S. (2023). To chat or bot to chat: Ethical issues with using chatbots in mental health. <em>Digital Health, 9</em>, 20552076231183542. https://doi.org/10.1177/20552076231183542</p>
+          </div>
+          <div class="source-block" style="margin-top:10px;">
+            <p class="source-text" style="padding-left:28px; text-indent:-28px;">De Freitas, J., &amp; Cohen, I. G. (2024). The health risks of generative AI-based wellness apps. <em>Nature Medicine, 30</em>(5), 1269-1275. https://doi.org/10.1038/s41591-024-02943-6</p>
+          </div>
+          <div class="source-block" style="margin-top:10px;">
+            <p class="source-text" style="padding-left:28px; text-indent:-28px;">Mavila, R., Jaiswal, S., Naswa, R., Yuwen, W., Erdly, B., &amp; Si, D. (2024). iCare - An AI-powered virtual assistant for mental health. In <em>2024 IEEE 12th International Conference on Healthcare Informatics (ICHI)</em> (pp. 466-471). Orlando, FL, USA. https://doi.org/10.1109/ICHI61247.2024.00066</p>
+          </div>
+          <div class="source-block" style="margin-top:10px;">
+            <p class="source-text" style="padding-left:28px; text-indent:-28px;">O'Brien, S. A. (2024, October 30). "There are no guardrails": This mom believes Character.AI is responsible for her son's suicide. <em>CNN</em>. https://www.cnn.com/2024/10/30/tech/teen-suicide-character-ai-lawsuit/index.html</p>
+          </div>
+          <div class="source-block" style="margin-top:10px;">
+            <p class="source-text" style="padding-left:28px; text-indent:-28px;">U.S. Department of Justice. (2024). Fact sheet: New rule on the accessibility of web content and mobile applications under the Americans with Disabilities Act. https://www.ada.gov/resources/2024-03-08-web-rule/</p>
+          </div>
+          <div class="source-block" style="margin-top:10px;">
+            <p class="source-text" style="padding-left:28px; text-indent:-28px;">Zerilli, J., Bhatt, U., &amp; Weller, A. (2022). How transparency modulates trust in artificial intelligence. <em>Patterns, 3</em>(4), 100455. https://doi.org/10.1016/j.patter.2022.100455</p>
           </div>
         </div>
       </div>
 
       <!-- Next -->
-      <a href="/projects/physical-computing.html" class="next-project">
-        <div>
-          <p class="next-label">Next Project</p>
-          <p class="next-title">Physical Computing: Game-ified arduino prototype</p>
-        </div>
-        <span class="next-arrow">&rarr;</span>
-      </a>
+      <div class="next-project-wrap">
+        <a href="/projects/physical-computing.html" class="next-project">next project →</a>
+      </div>
 
     </div>
   </div>
@@ -456,9 +506,9 @@
   <footer>
     <div class="footer-left">
       <span class="footer-name">Mia Vong</span>
-      <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/miavong/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
     </div>
-    <span class="footer-made">made with react.js + claude code + figma</span>
+    <span class="footer-made">made with claude code + figma</span>
   </footer>
 
   <script>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>E-Truck HMI — Mia Vong</title>
+  <title>E-Truck HMI - Mia Vong</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,7 +46,7 @@
       display: flex;
       padding-top: 72px;
       min-height: 100vh;
-      max-width: 1200px;
+      max-width: 1340px;
       margin: 0 auto;
     }
 
@@ -55,9 +55,9 @@
       position: sticky;
       top: 72px;
       height: calc(100vh - 72px);
-      width: 200px;
+      width: 180px;
       flex-shrink: 0;
-      padding: 48px 24px 48px 32px;
+      padding: 48px 20px 48px 28px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -69,14 +69,14 @@
       font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: #606080;
+      color: #7a7a9a;
       margin-bottom: 12px;
       font-weight: 500;
     }
 
     .sidebar-link {
       font-size: 13px;
-      color: #72728a;
+      color: #9898b0;
       text-decoration: none;
       letter-spacing: 0.02em;
       padding: 5px 0;
@@ -85,9 +85,9 @@
       line-height: 1.4;
     }
     .sidebar-link:hover { color: #b0b0cc; }
-    .sidebar-link.active { color: #56bfee; }
+    .sidebar-link.active { color: #0073FF; }
 
-    /* Back button — lives in sidebar */
+    /* Back button - lives in sidebar */
     .back-link {
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 12px; color: #5a5a72; text-decoration: none;
@@ -117,15 +117,15 @@
       position: absolute;
       top: -100px; right: -100px;
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(56,189,248,0.10) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,115,255,0.10) 0%, transparent 70%);
       border-radius: 50%;
       pointer-events: none;
     }
 
     .project-tag {
       display: inline-block; font-size: 11px; letter-spacing: 0.1em;
-      text-transform: uppercase; color: #56bfee;
-      background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.18);
+      text-transform: uppercase; color: #0073FF;
+      background: rgba(0,115,255,0.08); border: 1px solid rgba(0,115,255,0.18);
       border-radius: 999px; padding: 4px 14px; margin-bottom: 24px; font-weight: 500;
     }
 
@@ -143,13 +143,13 @@
 
     .section-eyebrow {
       font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-      color: #606080; margin-bottom: 14px; font-weight: 500;
+      color: #7a7a9a; margin-bottom: 14px; font-weight: 500;
       display: flex; align-items: center; gap: 10px;
     }
     .section-num {
       font-family: 'Space Mono', monospace;
-      font-size: 9px; font-weight: 700; color: #56bfee;
-      background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2);
+      font-size: 9px; font-weight: 700; color: #0073FF;
+      background: rgba(0,115,255,0.1); border: 1px solid rgba(0,115,255,0.2);
       border-radius: 4px; padding: 2px 6px; letter-spacing: 0.04em;
     }
 
@@ -161,7 +161,7 @@
     }
 
     .section-body {
-      font-size: 15px; line-height: 1.82; color: #72728a;
+      font-size: 15px; line-height: 1.82; color: #9898b0;
       font-weight: 300; max-width: 640px;
     }
     .section-body + .section-body { margin-top: 16px; }
@@ -175,16 +175,16 @@
     }
     .meta-cell { padding: 22px 28px; background: #0f0f18; }
     .meta-cell + .meta-cell { border-left: 1px solid rgba(255,255,255,0.06); }
-    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 8px; font-weight: 500; }
+    .meta-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #7a7a9a; margin-bottom: 8px; font-weight: 500; }
     .meta-value { font-size: 13.5px; color: #b0b0c8; font-weight: 400; line-height: 1.5; }
 
     /* Design question callout */
     .dq-callout {
-      background: linear-gradient(135deg, rgba(56,189,248,0.06) 0%, rgba(56,189,248,0.02) 100%);
-      border: 1px solid rgba(56,189,248,0.14);
+      background: linear-gradient(135deg, rgba(0,115,255,0.06) 0%, rgba(0,115,255,0.02) 100%);
+      border: 1px solid rgba(0,115,255,0.14);
       border-radius: 14px; padding: 36px; margin-bottom: 0;
     }
-    .dq-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #4d96b8; margin-bottom: 14px; font-weight: 500; }
+    .dq-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #4d8aff; margin-bottom: 14px; font-weight: 500; }
     .dq-text {
       font-family: 'Solway', serif;
       font-size: clamp(17px, 2vw, 22px);
@@ -194,13 +194,37 @@
     /* Quote */
     .quote-block {
       background: #0d0d1a; border: 1px solid rgba(255,255,255,0.06);
-      border-left: 3px solid rgba(56,189,248,0.4);
+      border-left: 3px solid rgba(0,115,255,0.4);
       border-radius: 0 12px 12px 0; padding: 32px 32px 28px; margin: 32px 0;
     }
-    .quote-mark { font-family: 'Solway', serif; font-size: 56px; line-height: 0.6; color: #56bfee; opacity: 0.22; display: block; margin-bottom: 16px; user-select: none; }
+    .quote-mark { font-family: 'Solway', serif; font-size: 56px; line-height: 0.6; color: #0073FF; opacity: 0.22; display: block; margin-bottom: 16px; user-select: none; }
     .quote-text { font-size: 15px; line-height: 1.78; color: #9898b8; font-style: italic; margin-bottom: 14px; }
-    .quote-attribution { font-size: 12px; color: #72728a; letter-spacing: 0.04em; display: flex; align-items: center; gap: 8px; }
-    .quote-attribution::before { content: '—'; opacity: 0.5; }
+    .quote-attribution { font-size: 12px; color: #9898b0; letter-spacing: 0.04em; display: flex; align-items: center; gap: 8px; }
+    .quote-attribution::before { content: '-'; opacity: 0.5; }
+
+    /* Stat citation callout */
+    .stat-citation {
+      position: relative; margin-top: 32px; padding: 32px 36px;
+      background: linear-gradient(135deg, rgba(0,115,255,0.06) 0%, rgba(0,60,180,0.03) 100%);
+      border: 1px solid rgba(0,115,255,0.14); border-radius: 14px;
+      overflow: hidden;
+    }
+    .stat-citation::before {
+      content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, #0073FF, #38bdf8, #818cf8, #c084fc);
+    }
+    .stat-citation-number {
+      font-family: 'Solway', serif; font-size: clamp(36px, 5vw, 56px);
+      font-weight: 700; color: #0073FF; letter-spacing: -0.04em; line-height: 1; margin-bottom: 12px;
+    }
+    .stat-citation-text { font-size: 15px; line-height: 1.75; color: #b0b0c8; font-weight: 300; max-width: 580px; }
+    .stat-citation-source {
+      margin-top: 16px; font-size: 11px; letter-spacing: 0.06em; color: #5a6a8a;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .stat-citation-source::before {
+      content: ''; width: 16px; height: 1px; background: #0073FF; opacity: 0.5;
+    }
 
     /* Problem cards */
     .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
@@ -209,42 +233,80 @@
       border-radius: 12px; padding: 24px;
     }
     .problem-num { font-size: 11px; color: #f87171; letter-spacing: 0.08em; margin-bottom: 10px; font-weight: 500; }
-    .problem-text { font-size: 14px; line-height: 1.65; color: #8a8aa2; font-weight: 300; }
+    .problem-text { font-size: 14px; line-height: 1.65; color: #a8a8c0; font-weight: 300; }
 
     /* Design criteria */
     .criteria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
     .criteria-card { background: #0f0f18; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 24px; }
     .criteria-title { font-size: 13px; font-weight: 500; color: #d0d0e8; margin-bottom: 14px; letter-spacing: -0.01em; }
-    .criteria-item { font-size: 13px; color: #82829a; line-height: 1.55; padding: 4px 0; font-weight: 300; display: flex; gap: 8px; }
-    .criteria-item::before { content: '→'; color: #56bfee; opacity: 0.6; flex-shrink: 0; }
+    .criteria-item { font-size: 13px; color: #a0a0b8; line-height: 1.55; padding: 4px 0; font-weight: 300; display: flex; gap: 8px; }
+    .criteria-item::before { content: '→'; color: #0073FF; opacity: 0.6; flex-shrink: 0; }
 
     /* Research stats */
     .research-stats { display: flex; gap: 0; margin-top: 32px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; }
     .res-stat { flex: 1; padding: 36px 24px; background: #0f0f18; text-align: center; }
     .res-stat + .res-stat { border-left: 1px solid rgba(255,255,255,0.05); }
-    .res-stat-num { font-family: 'Solway', serif; font-size: clamp(40px, 5vw, 56px); font-weight: 700; color: #56bfee; margin-bottom: 10px; letter-spacing: -0.04em; line-height: 1; }
-    .res-stat-label { font-size: 12.5px; color: #72728a; line-height: 1.5; }
+    .res-stat-num { font-family: 'Solway', serif; font-size: clamp(40px, 5vw, 56px); font-weight: 700; color: #0073FF; margin-bottom: 10px; letter-spacing: -0.04em; line-height: 1; }
+    .res-stat-label { font-size: 12.5px; color: #9898b0; line-height: 1.5; }
 
     /* UCD process */
     .ucd-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 32px; }
     .ucd-step { background: #0f0f18; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 24px 20px; position: relative; }
-    .ucd-num { font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; color: #56bfee; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.2); border-radius: 4px; padding: 2px 7px; display: inline-block; margin-bottom: 14px; letter-spacing: 0.04em; }
-    .ucd-text { font-size: 13px; line-height: 1.65; color: #8a8aa8; font-weight: 300; }
+    .ucd-num { font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; color: #0073FF; background: rgba(0,115,255,0.1); border: 1px solid rgba(0,115,255,0.2); border-radius: 4px; padding: 2px 7px; display: inline-block; margin-bottom: 14px; letter-spacing: 0.04em; }
+    .ucd-text { font-size: 13px; line-height: 1.65; color: #a8a8c0; font-weight: 300; }
+
+    /* Product + features side-by-side */
+    .product-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      align-items: start; margin-top: 32px;
+    }
+    .product-row .img-wrap img { width: 100%; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4); }
+    .product-row .feature-list { margin-top: 0; }
+
+    /* Interactive feature selector */
+    .interactive-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      align-items: stretch; margin-top: 32px;
+    }
+    .interactive-preview {
+      position: relative; border-radius: 12px; overflow: hidden;
+      box-shadow: none;
+    }
+    .interactive-preview img {
+      width: 100%; height: 100%; object-fit: contain; display: block; border-radius: 12px;
+      position: absolute; top: 0; left: 0;
+      opacity: 0; transition: opacity 0.35s ease;
+    }
+    .interactive-preview img.active { position: relative; opacity: 1; }
+    .interactive-features .feature-item {
+      cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease;
+      border-left: 3px solid transparent; position: relative;
+    }
+    .interactive-features .feature-item:hover { background: #131320; }
+    .interactive-features .feature-item.active {
+      background: #111122; border-left-color: #0073FF;
+    }
+    .interactive-features .feature-item.active .feature-num {
+      background: rgba(0,115,255,0.25); border-color: rgba(0,115,255,0.5);
+    }
+
+    /* Team image */
+    .team-img { width: 60%; border-radius: 12px; display: block; margin: 0 auto; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4); }
 
     /* Feature list */
     .feature-list { display: flex; flex-direction: column; gap: 0; margin-top: 32px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; }
     .feature-item { display: flex; gap: 24px; align-items: flex-start; padding: 22px 28px; background: #0f0f18; }
     .feature-item + .feature-item { border-top: 1px solid rgba(255,255,255,0.05); }
-    .feature-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(56,189,248,0.10); border: 1px solid rgba(56,189,248,0.18); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #56bfee; font-weight: 500; flex-shrink: 0; margin-top: 2px; }
+    .feature-num { width: 28px; height: 28px; border-radius: 50%; background: rgba(0,115,255,0.10); border: 1px solid rgba(0,115,255,0.18); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #0073FF; font-weight: 500; flex-shrink: 0; margin-top: 2px; }
     .feature-content { min-width: 0; }
     .feature-title { font-size: 14px; font-weight: 500; color: #d0d0e8; margin-bottom: 5px; }
-    .feature-desc { font-size: 13.5px; color: #82829a; line-height: 1.6; font-weight: 300; }
+    .feature-desc { font-size: 13.5px; color: #a0a0b8; line-height: 1.6; font-weight: 300; }
 
     /* Img blocks */
     .img-full { width: 100%; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4); }
     .img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
     .img-grid-2 img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.35); }
-    .img-caption { font-size: 12px; color: #606080; margin-top: 10px; }
+    .img-caption { font-size: 12px; color: #7a7a9a; margin-top: 10px; }
 
     /* Fidelity labels */
     .fidelity-row { display: flex; gap: 12px; margin-top: 32px; }
@@ -256,6 +318,12 @@
     .img-wrap { position: relative; display: block; }
     .img-chip { position: absolute; bottom: 12px; left: 12px; font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(9,9,15,0.78); border: 1px solid rgba(255,255,255,0.14); color: #b0b0c8; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); pointer-events: none; }
 
+    /* Field testing mosaic */
+    .field-mosaic { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 12px; }
+    .field-mosaic-tall { grid-row: 1 / 3; }
+    .field-mosaic img { width: 100%; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.35); }
+    .field-mosaic-tall img { height: 100%; object-fit: cover; object-position: right center; }
+
     /* Subsection divider */
     .sub-divider { border: none; border-top: 1px solid rgba(255,255,255,0.04); margin: 52px 0 0; }
 
@@ -266,23 +334,37 @@
     /* Footer */
     footer { padding: 22px 44px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 0; }
     .footer-left { display: flex; align-items: center; gap: 20px; }
-    .footer-name { font-size: 13px; color: #72728a; }
-    .footer-link { font-size: 13px; color: #606080; text-decoration: none; transition: color 0.2s ease; }
+    .footer-name { font-size: 13px; color: #9898b0; }
+    .footer-link { font-size: 13px; color: #7a7a9a; text-decoration: none; transition: color 0.2s ease; }
     .footer-link:hover { color: #8a8ab0; }
     .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
 
-    /* Next project */
-    .next-project {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 24px 80px; background: #0f0f18;
-      border-top: 1px solid rgba(255,255,255,0.04);
-      text-decoration: none; color: inherit;
-      transition: background 0.2s ease;
+    /* Next project button */
+    .next-project-wrap {
+      display: flex; justify-content: center; padding: 48px 80px 60px;
     }
-    .next-project:hover { background: #131320; }
-    .next-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #606080; margin-bottom: 6px; }
-    .next-title { font-size: 16px; color: #c0c0d8; font-weight: 400; }
-    .next-arrow { font-size: 20px; color: #72728a; }
+    .next-project {
+      position: relative; display: inline-block;
+      padding: 14px 40px; border-radius: 999px;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      color: #d0d0e8; text-decoration: none;
+      background: #09090f;
+      z-index: 1;
+      transition: color 0.25s ease;
+    }
+    .next-project::before {
+      content: ''; position: absolute; inset: -2px; border-radius: 999px; z-index: -1;
+      background: conic-gradient(from 0deg, #f87171, #fbbf24, #34d399, #38bdf8, #818cf8, #c084fc, #f472b6, #f87171);
+      opacity: 0.5; transition: opacity 0.3s ease, filter 0.3s ease;
+    }
+    .next-project::after {
+      content: ''; position: absolute; inset: 0; border-radius: 999px; z-index: -1;
+      background: #09090f;
+    }
+    .next-project:hover { color: #f0f0f0; }
+    .next-project:hover::before { opacity: 1; filter: blur(6px) brightness(1.3); }
+    .next-project:focus-visible { outline: 2px solid rgba(192,132,252,0.5); outline-offset: 4px; }
+    .next-project:active::before { opacity: 0.8; }
 
     .back-link-mobile { display: none; }
 
@@ -291,8 +373,13 @@
       .back-link-mobile { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #5a5a72; text-decoration: none; transition: color 0.2s ease; padding: 20px 48px 0; }
       .back-link-mobile:hover { color: #f0f0f0; }
       .case-hero, .section { padding: 40px 48px; }
-      .next-project { padding: 20px 48px; }
+      .next-project-wrap { padding: 36px 48px 48px; }
       .problem-grid, .criteria-grid, .ucd-grid { grid-template-columns: 1fr; }
+      .product-row { grid-template-columns: 1fr; }
+      .interactive-row { grid-template-columns: 1fr; }
+      .field-mosaic { grid-template-columns: 1fr; }
+      .field-mosaic-tall { grid-row: auto; }
+      .team-img { width: 80%; }
       .img-grid-2, .fidelity-row { flex-direction: column; display: flex; }
       nav { padding: 16px 20px; }
       footer { padding: 20px; flex-direction: column; gap: 10px; text-align: center; }
@@ -306,7 +393,7 @@
       .back-link-mobile { padding: 16px 24px 0; }
       .page-layout { padding-top: 64px; }
       .case-hero, .section { padding: 24px 24px; }
-      .next-project { padding: 16px 24px; }
+      .next-project-wrap { padding: 28px 24px 36px; }
       .meta-grid { grid-template-columns: 1fr; }
       .meta-cell + .meta-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
       .case-title { font-size: clamp(22px, 7vw, 34px); }
@@ -370,7 +457,7 @@
 
       <!-- Hero image -->
       <div class="section" style="padding-top:32px; padding-bottom:32px;">
-        <img src="/assets/e-truck/dashboard.png" alt="E-Truck HMI — both cluster displays in cab" class="img-full" />
+        <img src="/assets/e-truck/dashboard.png" alt="E-Truck HMI - both cluster displays in cab" class="img-full" />
       </div>
 
       <!-- Overview -->
@@ -378,7 +465,7 @@
         <p class="section-eyebrow"><span class="section-num">01</span>Overview</p>
         <h2 class="section-heading">Background</h2>
         <p class="section-body">
-          The HMI Capstone sponsored by PACCAR aims to develop a safe, intuitive, and development-ready human-machine interface (HMI) for the University of Washington's E-Truck, a student-led initiative to convert a Class 7 diesel truck into an electric vehicle (EV).
+          The HMI Capstone sponsored by PACCAR was created to design a human-machine interface (HMI) for the University of Washington's E-Truck, a student-led initiative to convert a Class 7 diesel truck into an electric vehicle (EV) in a 4 year timeline.
         </p>
         <div class="sp2">
           <div class="dq-callout">
@@ -391,15 +478,12 @@
       <!-- Problem -->
       <div class="section" id="problem">
         <p class="section-eyebrow"><span class="section-num">02</span>Problem</p>
-        <h2 class="section-heading">The transition to EV creates new HMI challenges</h2>
-        <p class="section-body">
-          California has set the goal that 100 percent of medium- and heavy-duty vehicles in the State will be zero-emission by 2045. The current E-Truck had no digital interface capable of communicating EV-specific information to drivers.
-        </p>
+        <h2 class="section-heading">The trucking industry's transition to EVs</h2>
 
-        <div class="quote-block">
-          <span class="quote-mark">"</span>
-          <p class="quote-text">Unlike conventional automotive vehicles, our trucks aren't just for transportation — they're a tool that drivers rely on every day to get their job done.</p>
-          <p class="quote-attribution">PACCAR Test Engineer</p>
+        <div class="stat-citation">
+          <p class="stat-citation-number">100%</p>
+          <p class="stat-citation-text">of medium- and heavy-duty vehicles in California must be zero-emission by 2045. The current E-Truck had no digital interface capable of communicating EV-specific information to drivers.</p>
+          <p class="stat-citation-source">California Governor's Office of Business and Economic Development</p>
         </div>
 
         <div class="problem-grid">
@@ -420,6 +504,11 @@
             <p class="problem-text">No E-Truck members have any UX or digital design / prototyping background</p>
           </div>
         </div>
+
+        <div class="sp2">
+          <img src="/assets/e-truck/eco-truck-disassembly.png" alt="E-Truck cab disassembly" class="img-full" />
+          <p class="img-caption">The E-Truck cab in its current state with the original diesel gauge cluster</p>
+        </div>
       </div>
 
       <!-- Solution (product preview) -->
@@ -427,35 +516,20 @@
         <p class="section-eyebrow"><span class="section-num">03</span>Solution</p>
         <h2 class="section-heading">A dual-display HMI: A-Cluster &amp; B-Cluster</h2>
         <p class="section-body">
-          We designed two co-existing displays — an A-Cluster driver instrument panel and a B-Cluster infotainment screen — that preserved diesel familiarity while surfacing EV-critical intelligence in real time.
+          We designed two co-existing displays - an A-Cluster driver instrument panel and a B-Cluster infotainment screen - that preserved diesel familiarity while surfacing EV-critical intelligence in real time.
         </p>
 
-        <div class="sp2">
-          <p class="section-eyebrow">A-Cluster — Driver Instrument Display</p>
+        <div class="img-grid-2 sp2">
           <div class="img-wrap">
-            <img src="/assets/e-truck/a-cluster-solution.png" alt="A-Cluster solution" class="img-full" />
-            <span class="img-chip">A-Cluster Display</span>
+            <img src="/assets/e-truck/a-cluster-home.png" alt="A-Cluster Home" />
+            <span class="img-chip">A-Cluster</span>
           </div>
-          <p class="img-caption">Speed, battery, regenerative charging bar, system warnings — all visible through the steering wheel</p>
-        </div>
-
-        <div class="sp2">
-          <p class="section-eyebrow">A-Cluster — Live in the Cab</p>
           <div class="img-wrap">
-            <img src="/assets/e-truck/a-cluster-drive.gif" alt="A-Cluster driving simulation" class="img-full" />
-            <span class="img-chip">ProtoPie Prototype</span>
+            <img src="/assets/e-truck/b-cluster-home.png" alt="B-Cluster Home" />
+            <span class="img-chip">B-Cluster</span>
           </div>
-          <p class="img-caption">ProtoPie prototype simulating driving state — keyboard-controlled speed, regen, and gear changes</p>
         </div>
-
-        <div class="sp2">
-          <p class="section-eyebrow">B-Cluster — Infotainment Display</p>
-          <div class="img-wrap">
-            <img src="/assets/e-truck/b-cluster-solution.png" alt="B-Cluster solution" class="img-full" />
-            <span class="img-chip">B-Cluster Display</span>
-          </div>
-          <p class="img-caption">Navigation, media, vehicle status, trip summary, and battery health in the center console</p>
-        </div>
+        <p class="img-caption">A-Cluster driver instrument display (left) and B-Cluster infotainment display (right)</p>
       </div>
 
       <!-- Research -->
@@ -481,6 +555,12 @@
           </div>
         </div>
 
+        <div class="quote-block sp2">
+          <span class="quote-mark">"</span>
+          <p class="quote-text">Unlike conventional automotive vehicles, our trucks aren't just for transportation - they're a tool that drivers rely on every day to get their job done.</p>
+          <p class="quote-attribution">PACCAR Test Engineer</p>
+        </div>
+
         <div class="sp2">
           <p class="section-eyebrow">Competitive Analysis</p>
           <img src="/assets/e-truck/competitor-analysis.png" alt="Competitor Analysis Board" class="img-full" />
@@ -496,25 +576,52 @@
         <div class="sp2">
           <p class="section-eyebrow">Field Testing</p>
           <p class="section-body">Trips to the E-Truck shop helped us validate display shape for steering-wheel visibility and informed placement for gauges, the regenerative bar, and charge indicators.</p>
-          <div class="img-grid-2 sp">
-            <div>
-              <img src="/assets/e-truck/eco-truck-disassembly.png" alt="E-Truck cab 2025" />
-              <p class="img-caption">E-Truck cab in 2025</p>
+          <div class="field-mosaic sp">
+            <div class="img-wrap field-mosaic-tall">
+              <img src="/assets/e-truck/e-truck-shop.jpg" alt="E-Truck shop" />
+              <span class="img-chip">E-Truck Shop</span>
             </div>
-            <div>
+            <div class="img-wrap">
               <img src="/assets/e-truck/testing-cluster-size.png" alt="Testing cluster size through steering wheel" />
-              <p class="img-caption">Testing A-Cluster dimensions through the steering wheel</p>
+              <span class="img-chip">Cluster Sizing</span>
+            </div>
+            <div class="img-wrap">
+              <img src="/assets/e-truck/diesel-cluster.jpg" alt="Original diesel cluster gauge" />
+              <span class="img-chip">Diesel Cluster</span>
             </div>
           </div>
+          <p class="img-caption">Left: The E-Truck shop · Top right: Testing A-Cluster dimensions through the steering wheel · Bottom right: The original diesel gauge cluster</p>
         </div>
       </div>
 
       <!-- Process -->
       <div class="section" id="process">
         <p class="section-eyebrow"><span class="section-num">05</span>Process</p>
-        <h2 class="section-heading">From criteria to prototype</h2>
+        <h2 class="section-heading">Building prototypes</h2>
 
         <div class="sp">
+          <p class="section-eyebrow">User-Centered Design Approach</p>
+          <div class="ucd-grid">
+            <div class="ucd-step">
+              <span class="ucd-num">Discover</span>
+              <p class="ucd-text">Interviewed PACCAR drivers; benchmarked Kenworth and Peterbilt HMI requirements</p>
+            </div>
+            <div class="ucd-step">
+              <span class="ucd-num">Define</span>
+              <p class="ucd-text">Generated concept sketches, built UI flows, and designed Figma wireframes</p>
+            </div>
+            <div class="ucd-step">
+              <span class="ucd-num">Develop</span>
+              <p class="ucd-text">Defined content criteria, product dimensions, and placement with E-Truck</p>
+            </div>
+            <div class="ucd-step">
+              <span class="ucd-num">Deliver</span>
+              <p class="ucd-text">Built a ProtoPie demo with keyboard-simulated controls + Figma designs</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sp2">
           <p class="section-eyebrow">Design Criteria</p>
           <div class="criteria-grid">
             <div class="criteria-card">
@@ -539,29 +646,7 @@
         </div>
 
         <div class="sp2">
-          <p class="section-eyebrow">User-Centered Design Approach</p>
-          <div class="ucd-grid">
-            <div class="ucd-step">
-              <span class="ucd-num">01 / Discover</span>
-              <p class="ucd-text">Interviewed PACCAR drivers; benchmarked Kenworth and Peterbilt HMI requirements</p>
-            </div>
-            <div class="ucd-step">
-              <span class="ucd-num">02 / Define</span>
-              <p class="ucd-text">Generated concept sketches, built UI flows, and designed Figma wireframes</p>
-            </div>
-            <div class="ucd-step">
-              <span class="ucd-num">03 / Develop</span>
-              <p class="ucd-text">Defined content criteria, product dimensions, and placement with E-Truck</p>
-            </div>
-            <div class="ucd-step">
-              <span class="ucd-num">04 / Deliver</span>
-              <p class="ucd-text">Built a ProtoPie demo with keyboard-simulated controls + Figma designs</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="sp2">
-          <p class="section-eyebrow">A-Cluster — Iterations</p>
+          <p class="section-eyebrow">A-Cluster - Iterations</p>
           <div class="fidelity-row">
             <div class="fidelity-block">
               <span class="fidelity-label">Lo-Fi · 01</span>
@@ -587,141 +672,142 @@
         <div class="sp2">
           <p class="section-eyebrow">Interaction Architecture</p>
           <img src="/assets/e-truck/a-cluster-architecture.png" alt="A-Cluster state architecture diagram" class="img-full" />
-          <p class="img-caption">State diagram mapping all keyboard-driven transitions: Off → Parked → Driving → Charge states</p>
+          <p class="img-caption">User flow mapping keyboard-driven transitions</p>
         </div>
       </div>
 
       <!-- Final Product -->
       <div class="section" id="final-product">
         <p class="section-eyebrow"><span class="section-num">06</span>Final Product</p>
-        <h2 class="section-heading">A-Cluster — Driver Instrument Display</h2>
+        <h2 class="section-heading">A-Cluster - Driver Instrument Display</h2>
         <p class="section-body">
           Displayed in front of the driver behind the steering wheel. Houses all real-time feedback: speed, energy/range, warning icons, gauge metrics, and the regenerative charging bar.
         </p>
 
-        <div class="feature-list sp">
-          <div class="feature-item">
-            <div class="feature-num">1</div>
-            <div class="feature-content">
-              <p class="feature-title">Personalized Messaging</p>
-              <p class="feature-desc">Real-time risk messaging specific to the health status of the truck and driver's safety</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-num">2</div>
-            <div class="feature-content">
-              <p class="feature-title">Gauge Metrics</p>
-              <p class="feature-desc">Kenworth-inspired gauges to communicate driving performance with diesel familiarity</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-num">3</div>
-            <div class="feature-content">
-              <p class="feature-title">Battery Status</p>
-              <p class="feature-desc">Real-time battery bar to reduce range anxiety for long-haul driving</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-num">4</div>
-            <div class="feature-content">
-              <p class="feature-title">Regenerative Charging</p>
-              <p class="feature-desc">Interactive bar showing power output &amp; energy regeneration upon braking</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="sp2">
+        <div class="product-row">
           <div class="img-wrap">
-            <img src="/assets/e-truck/a-cluster-final-product.png" alt="A-Cluster Final Design" class="img-full" />
+            <img src="/assets/e-truck/a-cluster-final-product.png" alt="A-Cluster Final Design" />
             <span class="img-chip">Hi-Fi · A-Cluster</span>
           </div>
-          <p class="img-caption">A-Cluster — Final high-fidelity design</p>
-        </div>
-
-        <div class="sp2">
-          <p class="section-eyebrow">Startup Sequence</p>
-          <div class="img-wrap">
-            <img src="/assets/e-truck/a-cluster-start-up-seq.gif" alt="A-Cluster startup sequence animation" class="img-full" />
-            <span class="img-chip">ProtoPie · Animated</span>
-          </div>
-          <p class="img-caption">Animated startup sequence: boot, systems check, seatbelt prompt, drive state</p>
-        </div>
-
-        <div class="sp2">
-          <h2 class="section-heading">B-Cluster — Infotainment Display</h2>
-          <p class="section-body">
-            Sits to the right of the driver. Houses navigation, media, vehicle status, trip summaries, and EV-specific metrics like powertrain performance and battery health.
-          </p>
-          <div class="feature-list sp">
+          <div class="feature-list">
             <div class="feature-item">
               <div class="feature-num">1</div>
               <div class="feature-content">
-                <p class="feature-title">Vehicle Status</p>
-                <p class="feature-desc">Vital information on truck performance: powertrain, energy output, and tire health</p>
+                <p class="feature-title">Personalized Messaging</p>
+                <p class="feature-desc">Real-time risk messaging specific to the health status of the truck and driver's safety</p>
               </div>
             </div>
             <div class="feature-item">
               <div class="feature-num">2</div>
               <div class="feature-content">
-                <p class="feature-title">Trip Summary</p>
-                <p class="feature-desc">Overview of distance, energy efficiency, drive time, and battery status per trip</p>
+                <p class="feature-title">Gauge Metrics</p>
+                <p class="feature-desc">Kenworth-inspired gauges to communicate driving performance with diesel familiarity</p>
               </div>
             </div>
             <div class="feature-item">
               <div class="feature-num">3</div>
               <div class="feature-content">
-                <p class="feature-title">Battery Health</p>
-                <p class="feature-desc">Communicates battery performance and charge cycles to reduce range anxiety</p>
+                <p class="feature-title">Battery Status</p>
+                <p class="feature-desc">Real-time battery bar to reduce range anxiety for long-haul driving</p>
               </div>
             </div>
             <div class="feature-item">
               <div class="feature-num">4</div>
               <div class="feature-content">
-                <p class="feature-title">System Check</p>
-                <p class="feature-desc">Initiates an A-Cluster check to comply with safety regulations and prevent breakdowns</p>
+                <p class="feature-title">Regenerative Charging</p>
+                <p class="feature-desc">Interactive bar showing power output &amp; energy regeneration upon braking</p>
               </div>
             </div>
           </div>
         </div>
 
         <div class="sp2">
+          <p class="section-eyebrow">A-Cluster - Live in the Cab</p>
           <div class="img-wrap">
-            <img src="/assets/e-truck/b-cluster-final-product.png" alt="B-Cluster Final Design" class="img-full" />
-            <span class="img-chip">Hi-Fi · B-Cluster</span>
+            <img src="/assets/e-truck/a-cluster-drive.gif" alt="A-Cluster driving simulation" class="img-full" />
+            <span class="img-chip">ProtoPie Prototype</span>
           </div>
-          <p class="img-caption">B-Cluster — Center infotainment display</p>
+          <p class="img-caption">ProtoPie prototype simulating driving state - keyboard-controlled up and down arrows for the driving state</p>
         </div>
 
         <div class="sp2">
-          <p class="section-eyebrow">The Team</p>
-          <img src="/assets/e-truck/capstone-picture.png" alt="E-Truck HMI capstone team" class="img-full" />
-          <p class="img-caption">UW HCDE × PACCAR capstone team — Best Impact, 2025 undergraduate showcase</p>
+          <h2 class="section-heading">B-Cluster - Infotainment Display</h2>
+          <p class="section-body">
+            Sits to the right of the driver. Houses navigation, media, vehicle status, trip summaries, and EV-specific metrics like powertrain performance and battery health.
+          </p>
+
+          <div class="interactive-row">
+            <div class="interactive-preview">
+              <img src="/assets/e-truck/vehicle-status.png" alt="Vehicle Status" class="active" data-feature="0" />
+              <img src="/assets/e-truck/trip-summary.png" alt="Trip Summary" data-feature="1" />
+              <img src="/assets/e-truck/battery-health.png" alt="Battery Health" data-feature="2" />
+              <img src="/assets/e-truck/system-check.gif" alt="System Check" data-feature="3" />
+            </div>
+            <div class="feature-list interactive-features">
+              <div class="feature-item active" data-feature="0">
+                <div class="feature-num">1</div>
+                <div class="feature-content">
+                  <p class="feature-title">Vehicle Status</p>
+                  <p class="feature-desc">Vital information on truck performance: powertrain, energy output, and tire health</p>
+                </div>
+              </div>
+              <div class="feature-item" data-feature="1">
+                <div class="feature-num">2</div>
+                <div class="feature-content">
+                  <p class="feature-title">Trip Summary</p>
+                  <p class="feature-desc">Overview of distance, energy efficiency, drive time, and battery status per trip</p>
+                </div>
+              </div>
+              <div class="feature-item" data-feature="2">
+                <div class="feature-num">3</div>
+                <div class="feature-content">
+                  <p class="feature-title">Battery Health</p>
+                  <p class="feature-desc">Communicates battery performance and charge cycles to reduce range anxiety</p>
+                </div>
+              </div>
+              <div class="feature-item" data-feature="3">
+                <div class="feature-num">4</div>
+                <div class="feature-content">
+                  <p class="feature-title">System Check</p>
+                  <p class="feature-desc">Initiates an A-Cluster check to comply with safety regulations and prevent breakdowns</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="sp2">
+            <p class="section-eyebrow">A-Cluster System Check</p>
+            <div class="img-wrap">
+              <img src="/assets/e-truck/a-cluster-system-check.gif" alt="A-Cluster system check animation" class="img-full" />
+              <span class="img-chip">Figma · Animated</span>
+            </div>
+            <p class="img-caption">System check sequence A-Cluster: communicates the truck's pre-drive health checklist</p>
+          </div>
         </div>
       </div>
 
       <!-- Reflection -->
       <div class="section" id="reflection">
         <p class="section-eyebrow"><span class="section-num">07</span>Reflection</p>
-        <h2 class="section-heading">What I learned</h2>
+        <h2 class="section-heading">Trucking makes the world go round!</h2>
         <p class="section-body">
-          This project is one of my proudest builds because we worked closely with E-Truck's control engineers and PACCAR's test engineers to define and align on HMI requirements, translating complex technical constraints into clear design decisions that worked for both engineering and the end user.
-        </p>
-        <p class="section-body sp">
-          The project demanded technical depth and creative problem-solving, requiring me to learn EV mechanics like regenerative braking while simultaneously self-teaching ProtoPie to prototype our UX designs. Beyond the product itself, this capstone project broke new ground for my undergrad department, marking the first-ever HCDE and PACCAR collaboration and earning a "Best Impact" award from the undergraduate showcase out of 60 teams.
+          This project required to learn about EV and automotive mechanics and how to bring our UX designs to life using Protopie. Beyond the product itself, this capstone project broke new ground for my undergrad department, marking the first-ever HCDE and PACCAR collaboration and earning a "Best Impact" award from the undergraduate showcase out of 60 teams.
         </p>
         <p class="section-body sp">
           Future members of E-Truck will take over our Figma designs, ProtoPie prototypes, and physical displays. The electrical and controls technical teams will handle wiring and programming the interfaces to communicate with the Electronic Control Unit (ECU) in the 2026 academic year.
         </p>
       </div>
 
+      <!-- Team -->
+      <div class="section" style="text-align:center; border-bottom:none;">
+        <img src="/assets/e-truck/capstone-picture.png" alt="E-Truck HMI capstone team" class="team-img" />
+        <p class="img-caption" style="text-align:center;">Capstone team picture - 2025 HCDE undergraduate showcase</p>
+      </div>
+
       <!-- Next project -->
-      <a href="/projects/icare.html" class="next-project">
-        <div>
-          <p class="next-label">Next Project</p>
-          <p class="next-title">iCare: AI conversational agent for mental health &rarr;</p>
-        </div>
-        <span class="next-arrow">&rarr;</span>
-      </a>
+      <div class="next-project-wrap">
+        <a href="/projects/icare.html" class="next-project">next project →</a>
+      </div>
 
     </div>
   </div>
@@ -729,9 +815,9 @@
   <footer>
     <div class="footer-left">
       <span class="footer-name">Mia Vong</span>
-      <a href="https://linkedin.com" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/miavong/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
     </div>
-    <span class="footer-made">made with react.js + claude code + figma</span>
+    <span class="footer-made">made with claude code + figma</span>
   </footer>
 
   <script>
@@ -748,6 +834,20 @@
       });
     }, { rootMargin: '-20% 0px -70% 0px' });
     sections.forEach(s => s && obs.observe(s));
+
+    // Interactive B-Cluster feature selector
+    const featureItems = document.querySelectorAll('.interactive-features .feature-item');
+    const previewImgs = document.querySelectorAll('.interactive-preview img');
+    featureItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const idx = item.getAttribute('data-feature');
+        featureItems.forEach(fi => fi.classList.remove('active'));
+        previewImgs.forEach(img => img.classList.remove('active'));
+        item.classList.add('active');
+        const target = document.querySelector('.interactive-preview img[data-feature="' + idx + '"]');
+        if (target) target.classList.add('active');
+      });
+    });
   </script>
 
 </body>

@@ -3,15 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/brand_assets/mia_logo.png" />
   <title>E-Truck HMI - Mia Vong</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #09090f; color: #f0f0f0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+    /* Custom cursor */
+    .cursor-dot { position: fixed; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.25s cubic-bezier(0.23,1,0.32,1), height 0.25s cubic-bezier(0.23,1,0.32,1), background 0.25s ease, border-color 0.25s ease; mix-blend-mode: difference; }
+    @media (pointer: coarse) { .cursor-dot { display: none; } }
+    body { background-color: #09090f; color: #f0f0f0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; cursor: none; }
+    a, button, .sidebar-link, .back-link, .feature-item { cursor: none; }
 
     body::before {
       content: '';
@@ -112,15 +120,6 @@
       overflow: hidden;
     }
 
-    .case-hero::before {
-      content: '';
-      position: absolute;
-      top: -100px; right: -100px;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(0,115,255,0.10) 0%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
 
     .project-tag {
       display: inline-block; font-size: 11px; letter-spacing: 0.1em;
@@ -206,18 +205,23 @@
     .stat-citation {
       position: relative; margin-top: 32px; padding: 32px 36px;
       background: linear-gradient(135deg, rgba(0,115,255,0.06) 0%, rgba(0,60,180,0.03) 100%);
-      border: 1px solid rgba(0,115,255,0.14); border-radius: 14px;
-      overflow: hidden;
+      border: 2px solid rgba(0,115,255,0.14); border-radius: 14px;
+      transition: border-color 0.4s ease, box-shadow 0.4s ease;
     }
-    .stat-citation::before {
-      content: ''; position: absolute; top: -1px; left: 0; right: 0; height: 3px;
-      background: linear-gradient(90deg, #0073FF, #38bdf8, #818cf8, #c084fc);
+    .stat-citation:hover {
+      border-color: #38bdf8;
+      box-shadow:
+        0 0 8px rgba(0,115,255,0.35),
+        0 0 24px rgba(56,189,248,0.2),
+        0 0 48px rgba(0,115,255,0.1),
+        inset 0 0 12px rgba(0,115,255,0.06);
     }
     .stat-citation-number {
       font-family: 'Solway', serif; font-size: clamp(36px, 5vw, 56px);
       font-weight: 700; color: #0073FF; letter-spacing: -0.04em; line-height: 1; margin-bottom: 12px;
     }
     .stat-citation-text { font-size: 15px; line-height: 1.75; color: #b0b0c8; font-weight: 300; max-width: 580px; }
+    .stat-citation-emphasis { color: #f0f0f0; font-weight: 500; }
     .stat-citation-source {
       margin-top: 16px; font-size: 11px; letter-spacing: 0.06em; color: #5a6a8a;
       display: flex; align-items: center; gap: 8px;
@@ -229,11 +233,12 @@
     /* Problem cards */
     .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
     .problem-card {
-      background: #0f0f18; border: 1px solid rgba(255,255,255,0.05);
+      background: linear-gradient(135deg, rgba(180,30,30,0.06) 0%, rgba(120,20,20,0.03) 100%);
+      border: 1px solid rgba(248,113,113,0.12);
       border-radius: 12px; padding: 24px;
     }
     .problem-num { font-size: 11px; color: #f87171; letter-spacing: 0.08em; margin-bottom: 10px; font-weight: 500; }
-    .problem-text { font-size: 14px; line-height: 1.65; color: #a8a8c0; font-weight: 300; }
+    .problem-text { font-size: 14px; line-height: 1.65; color: #c8a0a0; font-weight: 300; }
 
     /* Design criteria */
     .criteria-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 32px; }
@@ -291,7 +296,7 @@
     }
 
     /* Team image */
-    .team-img { width: 60%; border-radius: 12px; display: block; margin: 0 auto; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 32px rgba(0,0,0,0.4); }
+    .team-img { width: 60%; border-radius: 12px; display: block; margin: 0 auto; box-shadow: 0 8px 24px rgba(0,115,255,0.15), 0 24px 64px rgba(0,115,255,0.12), 0 0 100px rgba(0,115,255,0.10); }
 
     /* Feature list */
     .feature-list { display: flex; flex-direction: column; gap: 0; margin-top: 32px; border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; }
@@ -336,7 +341,8 @@
     .footer-left { display: flex; align-items: center; gap: 20px; }
     .footer-name { font-size: 13px; color: #9898b0; }
     .footer-link { font-size: 13px; color: #7a7a9a; text-decoration: none; transition: color 0.2s ease; }
-    .footer-link:hover { color: #8a8ab0; }
+    .footer-link:hover { color: #0A66C2; }
+    .footer-logo { width: 24px; height: 24px; border-radius: 4px; object-fit: cover; opacity: 0.8; }
     .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
 
     /* Next project button */
@@ -345,26 +351,47 @@
     }
     .next-project {
       position: relative; display: inline-block;
-      padding: 14px 40px; border-radius: 999px;
-      font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
-      color: #d0d0e8; text-decoration: none;
-      background: #09090f;
-      z-index: 1;
-      transition: color 0.25s ease;
+      border-radius: 999px; padding: 2px;
+      background: #09090f; text-decoration: none;
+      cursor: none;
     }
-    .next-project::before {
-      content: ''; position: absolute; inset: -2px; border-radius: 999px; z-index: -1;
+    /* Rainbow border layer */
+    .next-project-glow {
+      position: absolute; inset: 0; overflow: hidden; border-radius: 999px;
+    }
+    .next-project-glow::before {
+      content: ''; position: absolute; inset: 0; border-radius: 999px;
       background: conic-gradient(from 0deg, #f87171, #fbbf24, #34d399, #38bdf8, #818cf8, #c084fc, #f472b6, #f87171);
-      opacity: 0.5; transition: opacity 0.3s ease, filter 0.3s ease;
+      opacity: 0.45; transition: opacity 0.5s ease;
     }
-    .next-project::after {
-      content: ''; position: absolute; inset: 0; border-radius: 999px; z-index: -1;
+    .next-project:hover .next-project-glow::before { opacity: 1; }
+    /* Inner radial glow */
+    .next-project-glow::after {
+      content: ''; position: absolute; inset: 0; border-radius: 999px;
+      background: radial-gradient(75% 100% at 50% 0%, rgba(189,56,222,0.6) 0%, rgba(56,189,248,0.3) 75%);
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    .next-project:hover .next-project-glow::after { opacity: 1; }
+    /* Inner pill */
+    .next-project-inner {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      height: 38px; padding: 0 28px; border-radius: 999px;
       background: #09090f;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(220,220,240,0.8);
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
+      transition: color 0.3s ease;
     }
-    .next-project:hover { color: #f0f0f0; }
-    .next-project:hover::before { opacity: 1; filter: blur(6px) brightness(1.3); }
+    .next-project:hover .next-project-inner { color: rgba(255,255,255,0.9); }
+    /* Bottom gradient line */
+    .next-project-line {
+      position: absolute; bottom: 0; left: 18px; right: 18px; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(192,132,252,0.7), transparent);
+      opacity: 0; transition: opacity 0.5s ease;
+    }
+    .next-project:hover .next-project-line { opacity: 0.5; }
     .next-project:focus-visible { outline: 2px solid rgba(192,132,252,0.5); outline-offset: 4px; }
-    .next-project:active::before { opacity: 0.8; }
 
     .back-link-mobile { display: none; }
 
@@ -406,6 +433,7 @@
   </style>
 </head>
 <body>
+  <div class="cursor-dot" id="cursor"></div>
 
   <!-- Top nav -->
   <nav>
@@ -437,7 +465,7 @@
 
       <!-- Hero -->
       <div class="case-hero">
-        <span class="project-tag">HMI &nbsp;/&nbsp; UX Design &nbsp;/&nbsp; PACCAR</span>
+        <span class="project-tag">Electric Vehicle &nbsp;/&nbsp; UX Design &nbsp;/&nbsp; HMI</span>
         <h1 class="case-title">Human-Machine Interface for an Electric Truck</h1>
         <div class="meta-grid">
           <div class="meta-cell">
@@ -457,7 +485,7 @@
 
       <!-- Hero image -->
       <div class="section" style="padding-top:32px; padding-bottom:32px;">
-        <img src="/assets/e-truck/dashboard.png" alt="E-Truck HMI - both cluster displays in cab" class="img-full" />
+        <img src="/assets/e-truck/dashboard.jpg" alt="E-Truck HMI - both cluster displays in cab" class="img-full" style="border-radius:20px;" />
       </div>
 
       <!-- Overview -->
@@ -473,19 +501,43 @@
             <p class="dq-text">How might we design a safe, intuitive, development-ready HMI that enhances the driving experience in electric commercial trucks and supports the industry's transition to battery-electric vehicles?</p>
           </div>
         </div>
+
+        <div class="sp2">
+          <p class="section-eyebrow">User-Centered Design Approach</p>
+          <div class="ucd-grid">
+            <div class="ucd-step">
+              <span class="ucd-num">Discover</span>
+              <p class="ucd-text">Interviewed PACCAR drivers; benchmarked Kenworth and Peterbilt HMI requirements</p>
+            </div>
+            <div class="ucd-step">
+              <span class="ucd-num">Define</span>
+              <p class="ucd-text">Generated concept sketches, built UI flows, and designed Figma wireframes</p>
+            </div>
+            <div class="ucd-step">
+              <span class="ucd-num">Develop</span>
+              <p class="ucd-text">Defined content criteria, product dimensions, and placement with E-Truck</p>
+            </div>
+            <div class="ucd-step">
+              <span class="ucd-num">Deliver</span>
+              <p class="ucd-text">Built a ProtoPie demo with keyboard-simulated controls + Figma designs</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Problem -->
       <div class="section" id="problem">
         <p class="section-eyebrow"><span class="section-num">02</span>Problem</p>
         <h2 class="section-heading">The trucking industry's transition to EVs</h2>
+        <p class="section-body">The current E-Truck had no digital interface capable of communicating EV-specific information to drivers.</p>
 
         <div class="stat-citation">
-          <p class="stat-citation-number">100%</p>
-          <p class="stat-citation-text">of medium- and heavy-duty vehicles in California must be zero-emission by 2045. The current E-Truck had no digital interface capable of communicating EV-specific information to drivers.</p>
+          <p class="stat-citation-number"><span id="stat-counter">0</span>%</p>
+          <p class="stat-citation-text">of medium- and heavy-duty vehicles in California must be <span class="stat-citation-emphasis">zero-emission by 2045.</span></p>
           <p class="stat-citation-source">California Governor's Office of Business and Economic Development</p>
         </div>
 
+        <h3 class="section-heading sp2" style="font-size:clamp(18px,2vw,22px);">Pain Points</h3>
         <div class="problem-grid">
           <div class="problem-card">
             <p class="problem-num">01</p>
@@ -506,7 +558,7 @@
         </div>
 
         <div class="sp2">
-          <img src="/assets/e-truck/eco-truck-disassembly.png" alt="E-Truck cab disassembly" class="img-full" />
+          <img src="/assets/e-truck/eco-truck-disassembly.png" alt="E-Truck cab disassembly" class="img-full" loading="lazy" />
           <p class="img-caption">The E-Truck cab in its current state with the original diesel gauge cluster</p>
         </div>
       </div>
@@ -521,11 +573,11 @@
 
         <div class="img-grid-2 sp2">
           <div class="img-wrap">
-            <img src="/assets/e-truck/a-cluster-home.png" alt="A-Cluster Home" />
+            <img src="/assets/e-truck/a-cluster-home.png" alt="A-Cluster Home" loading="lazy" />
             <span class="img-chip">A-Cluster</span>
           </div>
           <div class="img-wrap">
-            <img src="/assets/e-truck/b-cluster-home.png" alt="B-Cluster Home" />
+            <img src="/assets/e-truck/b-cluster-home.png" alt="B-Cluster Home" loading="lazy" />
             <span class="img-chip">B-Cluster</span>
           </div>
         </div>
@@ -550,7 +602,7 @@
             <p class="res-stat-label">EV test engineers interviewed</p>
           </div>
           <div class="res-stat">
-            <p class="res-stat-num">6</p>
+            <p class="res-stat-num">5</p>
             <p class="res-stat-label">Competitors benchmarked</p>
           </div>
         </div>
@@ -563,13 +615,13 @@
 
         <div class="sp2">
           <p class="section-eyebrow">Competitive Analysis</p>
-          <img src="/assets/e-truck/competitor-analysis.png" alt="Competitor Analysis Board" class="img-full" />
+          <img src="/assets/e-truck/competitor-analysis.png" alt="Competitor Analysis Board" class="img-full" loading="lazy" />
           <p class="img-caption">Kenworth T680E &nbsp;·&nbsp; VOLVO VNR Electric &nbsp;·&nbsp; eCascadia &nbsp;·&nbsp; Nikola Electric &nbsp;·&nbsp; Tesla Semi</p>
         </div>
 
         <div class="sp2">
           <p class="section-eyebrow">Visual Design Exploration</p>
-          <img src="/assets/e-truck/a-cluster-design-exploration.png" alt="Design exploration: competitor HMI references" class="img-full" />
+          <img src="/assets/e-truck/a-cluster-design-exploration.png" alt="Design exploration: competitor HMI references" class="img-full" loading="lazy" />
           <p class="img-caption">Reference HMIs from Tesla Semi, Kenworth T680E, Nikola Electric, and eCascadia Freightliner</p>
         </div>
 
@@ -578,15 +630,15 @@
           <p class="section-body">Trips to the E-Truck shop helped us validate display shape for steering-wheel visibility and informed placement for gauges, the regenerative bar, and charge indicators.</p>
           <div class="field-mosaic sp">
             <div class="img-wrap field-mosaic-tall">
-              <img src="/assets/e-truck/e-truck-shop.jpg" alt="E-Truck shop" />
+              <img src="/assets/e-truck/e-truck-shop.jpg" alt="E-Truck shop" loading="lazy" />
               <span class="img-chip">E-Truck Shop</span>
             </div>
             <div class="img-wrap">
-              <img src="/assets/e-truck/testing-cluster-size.png" alt="Testing cluster size through steering wheel" />
+              <img src="/assets/e-truck/testing-cluster-size.png" alt="Testing cluster size through steering wheel" loading="lazy" />
               <span class="img-chip">Cluster Sizing</span>
             </div>
             <div class="img-wrap">
-              <img src="/assets/e-truck/diesel-cluster.jpg" alt="Original diesel cluster gauge" />
+              <img src="/assets/e-truck/diesel-cluster.jpg" alt="Original diesel cluster gauge" loading="lazy" />
               <span class="img-chip">Diesel Cluster</span>
             </div>
           </div>
@@ -600,28 +652,6 @@
         <h2 class="section-heading">Building prototypes</h2>
 
         <div class="sp">
-          <p class="section-eyebrow">User-Centered Design Approach</p>
-          <div class="ucd-grid">
-            <div class="ucd-step">
-              <span class="ucd-num">Discover</span>
-              <p class="ucd-text">Interviewed PACCAR drivers; benchmarked Kenworth and Peterbilt HMI requirements</p>
-            </div>
-            <div class="ucd-step">
-              <span class="ucd-num">Define</span>
-              <p class="ucd-text">Generated concept sketches, built UI flows, and designed Figma wireframes</p>
-            </div>
-            <div class="ucd-step">
-              <span class="ucd-num">Develop</span>
-              <p class="ucd-text">Defined content criteria, product dimensions, and placement with E-Truck</p>
-            </div>
-            <div class="ucd-step">
-              <span class="ucd-num">Deliver</span>
-              <p class="ucd-text">Built a ProtoPie demo with keyboard-simulated controls + Figma designs</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="sp2">
           <p class="section-eyebrow">Design Criteria</p>
           <div class="criteria-grid">
             <div class="criteria-card">
@@ -650,28 +680,28 @@
           <div class="fidelity-row">
             <div class="fidelity-block">
               <span class="fidelity-label">Lo-Fi · 01</span>
-              <img src="/assets/e-truck/a-cluster-low-fi-1.png" alt="Low Fidelity sketch 1" class="fidelity-img" />
+              <img src="/assets/e-truck/a-cluster-low-fi-1.jpg" alt="Low Fidelity sketch 1" class="fidelity-img" loading="lazy" />
             </div>
             <div class="fidelity-block">
               <span class="fidelity-label">Lo-Fi · 02</span>
-              <img src="/assets/e-truck/a-cluster-low-fi-2.png" alt="Low Fidelity sketch 2" class="fidelity-img" />
+              <img src="/assets/e-truck/a-cluster-low-fi-2.png" alt="Low Fidelity sketch 2" class="fidelity-img" loading="lazy" />
             </div>
           </div>
           <div class="fidelity-row">
             <div class="fidelity-block">
               <span class="fidelity-label">Mid-Fi · 01</span>
-              <img src="/assets/e-truck/a-cluster-mid-fi-1.png" alt="Mid Fidelity wireframe 1" class="fidelity-img" />
+              <img src="/assets/e-truck/a-cluster-mid-fi-1.png" alt="Mid Fidelity wireframe 1" class="fidelity-img" loading="lazy" />
             </div>
             <div class="fidelity-block">
               <span class="fidelity-label">Mid-Fi · 02</span>
-              <img src="/assets/e-truck/a-cluster-mid-fi-2.png" alt="Mid Fidelity wireframe 2" class="fidelity-img" />
+              <img src="/assets/e-truck/a-cluster-mid-fi-2.png" alt="Mid Fidelity wireframe 2" class="fidelity-img" loading="lazy" />
             </div>
           </div>
         </div>
 
         <div class="sp2">
           <p class="section-eyebrow">Interaction Architecture</p>
-          <img src="/assets/e-truck/a-cluster-architecture.png" alt="A-Cluster state architecture diagram" class="img-full" />
+          <img src="/assets/e-truck/a-cluster-architecture.png" alt="A-Cluster state architecture diagram" class="img-full" loading="lazy" />
           <p class="img-caption">User flow mapping keyboard-driven transitions</p>
         </div>
       </div>
@@ -686,7 +716,7 @@
 
         <div class="product-row">
           <div class="img-wrap">
-            <img src="/assets/e-truck/a-cluster-final-product.png" alt="A-Cluster Final Design" />
+            <img src="/assets/e-truck/a-cluster-final-product.png" alt="A-Cluster Final Design" loading="lazy" />
             <span class="img-chip">Hi-Fi · A-Cluster</span>
           </div>
           <div class="feature-list">
@@ -724,7 +754,7 @@
         <div class="sp2">
           <p class="section-eyebrow">A-Cluster - Live in the Cab</p>
           <div class="img-wrap">
-            <img src="/assets/e-truck/a-cluster-drive.gif" alt="A-Cluster driving simulation" class="img-full" />
+            <img src="/assets/e-truck/a-cluster-drive.gif" alt="A-Cluster driving simulation" class="img-full" loading="lazy" />
             <span class="img-chip">ProtoPie Prototype</span>
           </div>
           <p class="img-caption">ProtoPie prototype simulating driving state - keyboard-controlled up and down arrows for the driving state</p>
@@ -738,10 +768,10 @@
 
           <div class="interactive-row">
             <div class="interactive-preview">
-              <img src="/assets/e-truck/vehicle-status.png" alt="Vehicle Status" class="active" data-feature="0" />
-              <img src="/assets/e-truck/trip-summary.png" alt="Trip Summary" data-feature="1" />
-              <img src="/assets/e-truck/battery-health.png" alt="Battery Health" data-feature="2" />
-              <img src="/assets/e-truck/system-check.gif" alt="System Check" data-feature="3" />
+              <img src="/assets/e-truck/vehicle-status.png" alt="Vehicle Status" class="active" data-feature="0" loading="lazy" />
+              <img src="/assets/e-truck/trip-summary.png" alt="Trip Summary" data-feature="1" loading="lazy" />
+              <img src="/assets/e-truck/battery-health.png" alt="Battery Health" data-feature="2" loading="lazy" />
+              <img src="/assets/e-truck/system-check.gif" alt="System Check" data-feature="3" loading="lazy" />
             </div>
             <div class="feature-list interactive-features">
               <div class="feature-item active" data-feature="0">
@@ -778,7 +808,7 @@
           <div class="sp2">
             <p class="section-eyebrow">A-Cluster System Check</p>
             <div class="img-wrap">
-              <img src="/assets/e-truck/a-cluster-system-check.gif" alt="A-Cluster system check animation" class="img-full" />
+              <img src="/assets/e-truck/a-cluster-system-check.gif" alt="A-Cluster system check animation" class="img-full" loading="lazy" />
               <span class="img-chip">Figma · Animated</span>
             </div>
             <p class="img-caption">System check sequence A-Cluster: communicates the truck's pre-drive health checklist</p>
@@ -791,7 +821,7 @@
         <p class="section-eyebrow"><span class="section-num">07</span>Reflection</p>
         <h2 class="section-heading">Trucking makes the world go round!</h2>
         <p class="section-body">
-          This project required to learn about EV and automotive mechanics and how to bring our UX designs to life using Protopie. Beyond the product itself, this capstone project broke new ground for my undergrad department, marking the first-ever HCDE and PACCAR collaboration and earning a "Best Impact" award from the undergraduate showcase out of 60 teams.
+          Through research, design, and developement, I deepened my understanding of automotive mechanics and the EV landscape. Beyond the product itself, this capstone project broke new ground for my undergrad department, marking the first-ever HCDE and PACCAR collaboration and earning a "Best Impact" award from the undergraduate showcase out of 60 teams.
         </p>
         <p class="section-body sp">
           Future members of E-Truck will take over our Figma designs, ProtoPie prototypes, and physical displays. The electrical and controls technical teams will handle wiring and programming the interfaces to communicate with the Electronic Control Unit (ECU) in the 2026 academic year.
@@ -800,13 +830,17 @@
 
       <!-- Team -->
       <div class="section" style="text-align:center; border-bottom:none;">
-        <img src="/assets/e-truck/capstone-picture.png" alt="E-Truck HMI capstone team" class="team-img" />
+        <img src="/assets/e-truck/2025-capstone-2.png" alt="E-Truck HMI capstone team" class="team-img" loading="lazy" />
         <p class="img-caption" style="text-align:center;">Capstone team picture - 2025 HCDE undergraduate showcase</p>
       </div>
 
       <!-- Next project -->
       <div class="next-project-wrap">
-        <a href="/projects/icare.html" class="next-project">next project →</a>
+        <a href="/projects/icare.html" class="next-project">
+          <span class="next-project-glow"></span>
+          <div class="next-project-inner">next project →</div>
+          <span class="next-project-line"></span>
+        </a>
       </div>
 
     </div>
@@ -814,7 +848,7 @@
 
   <footer>
     <div class="footer-left">
-      <span class="footer-name">Mia Vong</span>
+      <img src="/brand_assets/mia_logo.png" alt="Mia Vong" class="footer-logo" loading="lazy" />
       <a href="https://www.linkedin.com/in/miavong/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
     </div>
     <span class="footer-made">made with claude code + figma</span>
@@ -848,6 +882,71 @@
         if (target) target.classList.add('active');
       });
     });
+
+    // --- Custom cursor ---
+    const cursor = document.getElementById('cursor');
+    let cx = -100, cy = -100;
+    document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; });
+    function updateCursor() { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; requestAnimationFrame(updateCursor); }
+    updateCursor();
+
+    // --- Stat counter animation ---
+    const statCounter = document.getElementById('stat-counter');
+    let counted = false;
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !counted) {
+          counted = true;
+          let current = 0;
+          const target = 100;
+          const duration = 1200;
+          const start = performance.now();
+          function tick(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            // Ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
+            current = Math.round(eased * target);
+            statCounter.textContent = current;
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        }
+      });
+    }, { threshold: 0.3 });
+    counterObs.observe(document.querySelector('.stat-citation'));
+
+    // --- GSAP scroll animations ---
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Sections: fade in + rise
+    gsap.utils.toArray('.section').forEach(sec => {
+      gsap.from(sec, {
+        opacity: 0, y: 40, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: sec, start: 'top 85%', toggleActions: 'play none none none' }
+      });
+    });
+
+    // Images: subtle scale-in
+    gsap.utils.toArray('.img-full, .img-wrap, .fidelity-img').forEach(img => {
+      gsap.from(img, {
+        opacity: 0, scale: 0.96, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: img, start: 'top 88%', toggleActions: 'play none none none' }
+      });
+    });
+
+    // Feature items: stagger
+    gsap.utils.toArray('.feature-list').forEach(list => {
+      gsap.from(list.querySelectorAll('.feature-item'), {
+        opacity: 0, x: -20, duration: 0.5, ease: 'power2.out', stagger: 0.08,
+        scrollTrigger: { trigger: list, start: 'top 85%', toggleActions: 'play none none none' }
+      });
+    });
+
+    // Case hero title
+    gsap.from('.case-title', { opacity: 0, y: 30, duration: 1, ease: 'power3.out', delay: 0.15 });
+    gsap.from('.project-tag', { opacity: 0, y: 15, duration: 0.6, ease: 'power2.out', delay: 0.05 });
+    gsap.from('.meta-grid', { opacity: 0, y: 20, duration: 0.7, ease: 'power2.out', delay: 0.3 });
   </script>
 
 </body>

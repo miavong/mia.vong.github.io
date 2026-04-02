@@ -3,15 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/brand_assets/mia_logo.png" />
   <title>Physical Computing - Mia Vong</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #09090f; color: #f0f0f0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    .cursor-dot { position: fixed; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.25s cubic-bezier(0.23,1,0.32,1), height 0.25s cubic-bezier(0.23,1,0.32,1), background 0.25s ease, border-color 0.25s ease; mix-blend-mode: difference; }
+    @media (pointer: coarse) { .cursor-dot { display: none; } }
+    body { background-color: #09090f; color: #f0f0f0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; cursor: none; }
+    a, button, .sidebar-link, .back-link { cursor: none; }
 
     body::before {
       content: '';
@@ -174,36 +180,28 @@
     .img-grid-2 img { width: 100%; border-radius: 10px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 4px 20px rgba(0,0,0,0.35); }
 
     /* Friends photo */
-    .friends-img { width: 100%; border-radius: 12px; display: block; box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 40px rgba(0,0,0,0.5); }
+    .friends-img { width: 100%; border-radius: 35px; display: block; box-shadow: 0 8px 40px rgba(0,0,0,0.5); overflow: hidden; object-fit: cover; }
 
     /* Next */
     .next-project-wrap { display: flex; justify-content: center; padding: 48px 80px 60px; }
-    .next-project {
-      position: relative; display: inline-block;
-      padding: 14px 40px; border-radius: 999px;
-      font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
-      color: #d0d0e8; text-decoration: none;
-      background: #09090f; z-index: 1;
-      transition: color 0.25s ease;
-    }
-    .next-project::before {
-      content: ''; position: absolute; inset: -2px; border-radius: 999px; z-index: -1;
-      background: conic-gradient(from 0deg, #f87171, #fbbf24, #34d399, #38bdf8, #818cf8, #c084fc, #f472b6, #f87171);
-      opacity: 0.5; transition: opacity 0.3s ease, filter 0.3s ease;
-    }
-    .next-project::after {
-      content: ''; position: absolute; inset: 0; border-radius: 999px; z-index: -1; background: #09090f;
-    }
-    .next-project:hover { color: #f0f0f0; }
-    .next-project:hover::before { opacity: 1; filter: blur(6px) brightness(1.3); }
+    .next-project { position: relative; display: inline-block; border-radius: 999px; padding: 2px; background: #09090f; text-decoration: none; cursor: none; }
+    .next-project-glow { position: absolute; inset: 0; overflow: hidden; border-radius: 999px; }
+    .next-project-glow::before { content: ''; position: absolute; inset: 0; border-radius: 999px; background: conic-gradient(from 0deg, #f87171, #fbbf24, #34d399, #38bdf8, #818cf8, #c084fc, #f472b6, #f87171); opacity: 0.45; transition: opacity 0.5s ease; }
+    .next-project:hover .next-project-glow::before { opacity: 1; }
+    .next-project-glow::after { content: ''; position: absolute; inset: 0; border-radius: 999px; background: radial-gradient(75% 100% at 50% 0%, rgba(189,56,222,0.6) 0%, rgba(56,189,248,0.3) 75%); opacity: 0; transition: opacity 0.5s ease; }
+    .next-project:hover .next-project-glow::after { opacity: 1; }
+    .next-project-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; height: 38px; padding: 0 28px; border-radius: 999px; background: #09090f; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(220,220,240,0.8); box-shadow: 0 0 0 2px rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); transition: color 0.3s ease; }
+    .next-project:hover .next-project-inner { color: rgba(255,255,255,0.9); }
+    .next-project-line { position: absolute; bottom: 0; left: 18px; right: 18px; height: 1px; background: linear-gradient(90deg, transparent, rgba(192,132,252,0.7), transparent); opacity: 0; transition: opacity 0.5s ease; }
+    .next-project:hover .next-project-line { opacity: 0.5; }
     .next-project:focus-visible { outline: 2px solid rgba(192,132,252,0.5); outline-offset: 4px; }
-    .next-project:active::before { opacity: 0.8; }
 
     footer { padding: 22px 44px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); }
     .footer-left { display: flex; align-items: center; gap: 20px; }
     .footer-name { font-size: 13px; color: #9898b0; }
     .footer-link { font-size: 13px; color: #7a7a9a; text-decoration: none; transition: color 0.2s ease; }
-    .footer-link:hover { color: #8a8ab0; }
+    .footer-link:hover { color: #0A66C2; }
+    .footer-logo { width: 24px; height: 24px; border-radius: 4px; object-fit: cover; opacity: 0.8; }
     .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
 
     .back-link-mobile { display: none; }
@@ -244,6 +242,7 @@
   </style>
 </head>
 <body>
+  <div class="cursor-dot" id="cursor"></div>
 
   <nav>
     <div class="nav-pill">
@@ -304,7 +303,7 @@
         <!-- Friends photo -->
         <div class="sp2">
           <p class="section-eyebrow">Friends in question...</p>
-          <img src="/assets/physical-computing/friends.png" alt="Friends in question" class="friends-img" />
+          <img src="/assets/physical-computing/friends.jpg" alt="Friends in question" class="friends-img" loading="lazy" />
         </div>
       </div>
 
@@ -320,7 +319,7 @@
       <!-- Build -->
       <div class="section" id="research">
         <p class="section-eyebrow"><span class="section-num">03</span>Build</p>
-        <h2 class="section-heading">Game Development</h2>
+        <h2 class="section-heading">Game development</h2>
         <p class="section-eyebrow">Bill of Materials</p>
 
         <div class="bom-grid">
@@ -338,7 +337,7 @@
         <div class="sp2">
           <p class="section-eyebrow">Schematic</p>
           <div class="img-wrap">
-            <img src="/assets/physical-computing/schematic.png" alt="Circuit Schematic" class="img-full" />
+            <img src="/assets/physical-computing/schematic.png" alt="Circuit Schematic" class="img-full" loading="lazy" />
             <span class="img-chip">Circuit Schematic</span>
           </div>
         </div>
@@ -357,11 +356,11 @@
           </div>
           <div class="img-grid-2 sp">
             <div>
-              <img src="/assets/physical-computing/can-section.png" alt="Enclosed sensor environment" />
+              <img src="/assets/physical-computing/can-section.png" alt="Enclosed sensor environment" loading="lazy" />
               <p class="img-caption">no can enviroment = game on</p>
             </div>
             <div>
-              <img src="/assets/physical-computing/can-with-can.png" alt="Can as gate block" />
+              <img src="/assets/physical-computing/can-with-can.png" alt="Can as gate block" loading="lazy" />
               <p class="img-caption">present can enviroment = game off</p>
             </div>
           </div>
@@ -370,9 +369,9 @@
         <div class="sp2">
           <p class="section-eyebrow">Build Documentation</p>
           <div class="photo-grid-3">
-            <img src="/assets/physical-computing/inside-box.png" alt="Inside the box" />
-            <img src="/assets/physical-computing/can-full.png" alt="Full prototype" />
-            <img src="/assets/physical-computing/top-of-proto.jpg" alt="Top of prototype" />
+            <img src="/assets/physical-computing/inside-box.jpg" alt="Inside the box" loading="lazy" />
+            <img src="/assets/physical-computing/can-full.jpg" alt="Full prototype" loading="lazy" />
+            <img src="/assets/physical-computing/top-of-proto.jpg" alt="Top of prototype" loading="lazy" />
           </div>
         </div>
 
@@ -544,13 +543,17 @@ SevSeg sevseg; <span class="code-comment">// Define a seven-segment display</spa
         </p>
 
         <div class="sp2">
-          <img src="/assets/physical-computing/grad-mia.png" alt="Mia at graduation" class="img-full" style="width:30%; margin:0 auto;" />
+          <img src="/assets/physical-computing/grad-mia.jpg" alt="Mia at graduation" class="img-full" loading="lazy" style="width:30%; margin:0 auto;" />
         </div>
       </div>
 
       <!-- Next -->
       <div class="next-project-wrap">
-        <a href="/index.html#projects" class="next-project">all projects →</a>
+        <a href="/index.html#projects" class="next-project">
+          <span class="next-project-glow"></span>
+          <div class="next-project-inner">all projects →</div>
+          <span class="next-project-line"></span>
+        </a>
       </div>
 
     </div>
@@ -558,7 +561,7 @@ SevSeg sevseg; <span class="code-comment">// Define a seven-segment display</spa
 
   <footer>
     <div class="footer-left">
-      <span class="footer-name">Mia Vong</span>
+      <img src="/brand_assets/mia_logo.png" alt="Mia Vong" class="footer-logo" loading="lazy" />
       <a href="https://www.linkedin.com/in/miavong/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
     </div>
     <span class="footer-made">made with claude code + figma</span>
@@ -577,6 +580,26 @@ SevSeg sevseg; <span class="code-comment">// Define a seven-segment display</spa
       });
     }, { rootMargin: '-20% 0px -70% 0px' });
     sections.forEach(s => s && obs.observe(s));
+
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    let cx = -100, cy = -100;
+    document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; });
+    function updateCursor() { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; requestAnimationFrame(updateCursor); }
+    updateCursor();
+
+    // GSAP scroll animations
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.section').forEach(sec => {
+      gsap.from(sec, { opacity: 0, y: 40, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: sec, start: 'top 85%', toggleActions: 'play none none none' } });
+    });
+    gsap.utils.toArray('.img-full, .img-wrap, .photo-grid-3 img').forEach(img => {
+      gsap.from(img, { opacity: 0, scale: 0.96, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: img, start: 'top 88%', toggleActions: 'play none none none' } });
+    });
+    gsap.from('.case-title', { opacity: 0, y: 30, duration: 1, ease: 'power3.out', delay: 0.15 });
+    gsap.from('.project-tag', { opacity: 0, y: 15, duration: 0.6, ease: 'power2.out', delay: 0.05 });
   </script>
 
 </body>

@@ -3,15 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/brand_assets/mia_logo.png" />
   <title>iCare - Mia Vong</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: #09090f; color: #f0f0f0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+    .cursor-dot { position: fixed; width: 32px; height: 32px; border-radius: 50%; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.25s cubic-bezier(0.23,1,0.32,1), height 0.25s cubic-bezier(0.23,1,0.32,1), background 0.25s ease, border-color 0.25s ease; mix-blend-mode: difference; }
+    @media (pointer: coarse) { .cursor-dot { display: none; } }
+    body { background-color: #09090f; color: #f0f0f0; font-family: 'DM Sans', sans-serif; overflow-x: hidden; cursor: none; }
+    a, button, .sidebar-link, .back-link { cursor: none; }
 
     body::before {
       content: '';
@@ -61,26 +67,17 @@
 
     .main-content { flex: 1; min-width: 0; padding: 0 0 100px; }
 
-    /* Hero - purple gradient */
+    /* Hero */
     .case-hero {
-      padding: 0;
+      padding: 60px 80px 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
       position: relative; overflow: hidden;
-    }
-    .hero-grad {
-      background: linear-gradient(135deg, #1a0a40 0%, #4c1d95 28%, #7c3aed 52%, #be185d 78%, #f472b6 100%);
-      padding: 60px 80px 64px; position: relative;
-    }
-    .hero-grad::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
-      background: linear-gradient(to bottom, transparent, #09090f);
-      pointer-events: none;
     }
 
     .project-tag {
       display: inline-block; font-size: 11px; letter-spacing: 0.1em;
-      text-transform: uppercase; color: rgba(255,255,255,0.75);
-      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22);
+      text-transform: uppercase; color: #c084fc;
+      background: rgba(192,132,252,0.08); border: 1px solid rgba(192,132,252,0.18);
       border-radius: 999px; padding: 4px 14px; margin-bottom: 24px; font-weight: 500;
     }
     .case-title {
@@ -174,11 +171,24 @@
       width: 45%; bottom: 0; right: 0; z-index: 2;
     }
 
-    /* Gif strip */
-    .gif-strip {
-      display: flex; flex-direction: column; gap: 32px; margin-top: 32px;
+    /* Intervention features */
+    .intervention-feature {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.23,1,0.32,1);
     }
-    .gif-strip img {
+    .intervention-feature.visible { opacity: 1; transform: translateY(0); }
+    .intervention-title {
+      font-family: 'Solway', serif;
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 400; color: #e0d0f0;
+      letter-spacing: -0.02em; line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .intervention-desc {
+      font-size: 14px; line-height: 1.75; color: #9898b0; font-weight: 300;
+      max-width: 600px; margin-bottom: 28px;
+    }
+    .intervention-img {
       width: 100%; border-radius: 12px; display: block;
       box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 32px rgba(0,0,0,0.4);
     }
@@ -189,32 +199,24 @@
 
     /* Next */
     .next-project-wrap { display: flex; justify-content: center; padding: 48px 80px 60px; }
-    .next-project {
-      position: relative; display: inline-block;
-      padding: 14px 40px; border-radius: 999px;
-      font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
-      color: #d0d0e8; text-decoration: none;
-      background: #09090f; z-index: 1;
-      transition: color 0.25s ease;
-    }
-    .next-project::before {
-      content: ''; position: absolute; inset: -2px; border-radius: 999px; z-index: -1;
-      background: conic-gradient(from 0deg, #f87171, #fbbf24, #34d399, #38bdf8, #818cf8, #c084fc, #f472b6, #f87171);
-      opacity: 0.5; transition: opacity 0.3s ease, filter 0.3s ease;
-    }
-    .next-project::after {
-      content: ''; position: absolute; inset: 0; border-radius: 999px; z-index: -1; background: #09090f;
-    }
-    .next-project:hover { color: #f0f0f0; }
-    .next-project:hover::before { opacity: 1; filter: blur(6px) brightness(1.3); }
+    .next-project { position: relative; display: inline-block; border-radius: 999px; padding: 2px; background: #09090f; text-decoration: none; cursor: none; }
+    .next-project-glow { position: absolute; inset: 0; overflow: hidden; border-radius: 999px; }
+    .next-project-glow::before { content: ''; position: absolute; inset: 0; border-radius: 999px; background: conic-gradient(from 0deg, #f87171, #fbbf24, #34d399, #38bdf8, #818cf8, #c084fc, #f472b6, #f87171); opacity: 0.45; transition: opacity 0.5s ease; }
+    .next-project:hover .next-project-glow::before { opacity: 1; }
+    .next-project-glow::after { content: ''; position: absolute; inset: 0; border-radius: 999px; background: radial-gradient(75% 100% at 50% 0%, rgba(189,56,222,0.6) 0%, rgba(56,189,248,0.3) 75%); opacity: 0; transition: opacity 0.5s ease; }
+    .next-project:hover .next-project-glow::after { opacity: 1; }
+    .next-project-inner { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; height: 38px; padding: 0 28px; border-radius: 999px; background: #09090f; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(220,220,240,0.8); box-shadow: 0 0 0 2px rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08); transition: color 0.3s ease; }
+    .next-project:hover .next-project-inner { color: rgba(255,255,255,0.9); }
+    .next-project-line { position: absolute; bottom: 0; left: 18px; right: 18px; height: 1px; background: linear-gradient(90deg, transparent, rgba(192,132,252,0.7), transparent); opacity: 0; transition: opacity 0.5s ease; }
+    .next-project:hover .next-project-line { opacity: 0.5; }
     .next-project:focus-visible { outline: 2px solid rgba(192,132,252,0.5); outline-offset: 4px; }
-    .next-project:active::before { opacity: 0.8; }
 
     footer { padding: 22px 44px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,255,255,0.05); }
     .footer-left { display: flex; align-items: center; gap: 20px; }
     .footer-name { font-size: 13px; color: #9898b0; }
     .footer-link { font-size: 13px; color: #7a7a9a; text-decoration: none; transition: color 0.2s ease; }
-    .footer-link:hover { color: #8a8ab0; }
+    .footer-link:hover { color: #0A66C2; }
+    .footer-logo { width: 24px; height: 24px; border-radius: 4px; object-fit: cover; opacity: 0.8; }
     .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
 
     .back-link-mobile { display: none; }
@@ -223,7 +225,7 @@
       .sidebar { display: none; }
       .back-link-mobile { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #5a5a72; text-decoration: none; transition: color 0.2s ease; padding: 20px 48px 0; }
       .back-link-mobile:hover { color: #f0f0f0; }
-      .hero-grad, .section { padding: 40px 48px; }
+      .case-hero, .section { padding: 40px 48px; }
       .stats-grid, .solution-grid, .before-after { grid-template-columns: 1fr; }
       .layered-imgs { height: 300px; }
       .phone-strip { flex-wrap: wrap; justify-content: center; }
@@ -240,7 +242,7 @@
       .nav-link { font-size: 12px; }
       .back-link-mobile { padding: 16px 24px 0; }
       .page-layout { padding-top: 64px; }
-      .hero-grad, .section { padding: 24px 24px; }
+      .case-hero, .section { padding: 24px 24px; }
       .layered-imgs { height: 220px; }
       .layered-imgs .layer-back { width: 60%; }
       .layered-imgs .layer-front { width: 50%; }
@@ -261,6 +263,7 @@
   </style>
 </head>
 <body>
+  <div class="cursor-dot" id="cursor"></div>
 
   <nav>
     <div class="nav-pill">
@@ -288,22 +291,20 @@
 
       <!-- Hero -->
       <div class="case-hero">
-        <div class="hero-grad">
-          <span class="project-tag">AI &nbsp;/&nbsp; Ethics &nbsp;/&nbsp; Mental Health</span>
-          <h1 class="case-title">Conversational AI agent (iCare) for mental health</h1>
-          <div class="meta-grid">
-            <div class="meta-cell">
-              <p class="meta-label">Team</p>
-              <p class="meta-value">Mia Vong</p>
-            </div>
-            <div class="meta-cell">
-              <p class="meta-label">Tools</p>
-              <p class="meta-value">Figma</p>
-            </div>
-            <div class="meta-cell">
-              <p class="meta-label">Timeline</p>
-              <p class="meta-value">2 months</p>
-            </div>
+        <span class="project-tag">AI &nbsp;/&nbsp; Ethics &nbsp;/&nbsp; Mental Health</span>
+        <h1 class="case-title">Conversational AI agent (iCare) for mental health</h1>
+        <div class="meta-grid">
+          <div class="meta-cell">
+            <p class="meta-label">Team</p>
+            <p class="meta-value">Mia Vong</p>
+          </div>
+          <div class="meta-cell">
+            <p class="meta-label">Tools</p>
+            <p class="meta-value">Figma</p>
+          </div>
+          <div class="meta-cell">
+            <p class="meta-label">Timeline</p>
+            <p class="meta-value">2 months</p>
           </div>
         </div>
       </div>
@@ -361,7 +362,7 @@
         </p>
 
         <div class="sp2">
-          <img src="/assets/icare/chatbot-final-product.png" alt="iCare redesigned chatbot" class="img-full" />
+          <img src="/assets/icare/chatbot-final-product.png" alt="iCare redesigned chatbot" class="img-full" loading="lazy" />
         </div>
       </div>
 
@@ -390,7 +391,7 @@
 
         <div class="sp2">
           <p class="section-eyebrow">User Flow</p>
-          <img src="/assets/icare/i-care-user-flow.png" alt="iCare user flow diagram" class="img-full" />
+          <img src="/assets/icare/i-care-user-flow.png" alt="iCare user flow diagram" class="img-full" loading="lazy" />
           <p class="img-caption">Mapping the conversational flow and risk mitigation pathways</p>
         </div>
       </div>
@@ -406,61 +407,38 @@
           <div class="before-after">
             <div class="ba-block">
               <p class="ba-label">Before</p>
-              <img src="/assets/icare/before-chatbot-page.png" alt="Original chatbot design" class="ba-img" />
+              <img src="/assets/icare/before-chatbot-page.png" alt="Original chatbot design" class="ba-img" loading="lazy" />
               <p class="ba-caption">Original iCare chatbot with no ethical safeguards or crisis detection</p>
             </div>
             <div class="ba-block">
               <p class="ba-label">After</p>
-              <img src="/assets/icare/after-chatbot-page.jpg" alt="Redesigned chatbot" class="ba-img" />
+              <img src="/assets/icare/after-chatbot-page.jpg" alt="Redesigned chatbot" class="ba-img" loading="lazy" />
               <p class="ba-caption">Redesigned with acknowledgment flows, crisis alerts, and transparency features</p>
             </div>
           </div>
         </div>
 
-        <!-- Four design interventions -->
+        <!-- Design interventions -->
         <div class="sp2">
-          <h2 class="section-heading">Four design interventions</h2>
-          <div class="solution-grid">
-            <div class="solution-card">
-              <span class="solution-arrow">→</span>
-              <p class="solution-title">Increase transparency</p>
-              <p class="solution-desc">Clear disclaimers, acknowledgment flows, and visible system limitations</p>
-            </div>
-            <div class="solution-card">
-              <span class="solution-arrow">→</span>
-              <p class="solution-title">Improve safety in crisis scenarios</p>
-              <p class="solution-desc">Real-time crisis detection and escalation to external support resources</p>
-            </div>
-            <div class="solution-card">
-              <span class="solution-arrow">→</span>
-              <p class="solution-title">Enhance accessibility &amp; inclusivity</p>
-              <p class="solution-desc">Simplified UI, adaptable layouts, and support for users with cognitive and visual disabilities</p>
-            </div>
-            <div class="solution-card">
-              <span class="solution-arrow">→</span>
-              <p class="solution-title">Create feedback &amp; accountability Loops</p>
-              <p class="solution-desc">Reporting tools and user feedback mechanisms to continuously improve the system</p>
-            </div>
-          </div>
+          <h2 class="section-heading">Design interventions</h2>
         </div>
 
-        <!-- Final product gifs -->
-        <div class="sp2">
-          <p style="font-size:14px; font-weight:500; color:#d0b8f0; margin-bottom:20px;">Design Interventions</p>
-          <div class="gif-strip">
-            <div>
-              <img src="/assets/icare/acknowledgement-page.gif" alt="Acknowledgement page flow" />
-              <p class="img-caption" style="text-align:center; margin-top:12px;">Acknowledgement Page</p>
-            </div>
-            <div>
-              <img src="/assets/icare/submit-report.gif" alt="Submit report flow" />
-              <p class="img-caption" style="text-align:center; margin-top:12px;">Submit Report</p>
-            </div>
-            <div>
-              <img src="/assets/icare/high-risk.gif" alt="High risk alert flow" />
-              <p class="img-caption" style="text-align:center; margin-top:12px;">High Risk Alert</p>
-            </div>
-          </div>
+        <div class="intervention-feature sp2">
+          <h3 class="intervention-title">Increase Transparency</h3>
+          <p class="intervention-desc">Clear disclaimers, acknowledgment flows, and visible system limitations. Users must explicitly acknowledge AI limitations before engaging with CareBot.</p>
+          <img src="/assets/icare/acknowledgement-page.gif" alt="Acknowledgement page flow" class="intervention-img" loading="lazy" />
+        </div>
+
+        <div class="intervention-feature sp2">
+          <h3 class="intervention-title">Improve Safety in Crisis Scenarios</h3>
+          <p class="intervention-desc">Real-time crisis detection and escalation to external support resources. Users can flag harmful or inaccurate responses directly from the chat.</p>
+          <img src="/assets/icare/submit-report.gif" alt="Submit report flow" class="intervention-img" loading="lazy" />
+        </div>
+
+        <div class="intervention-feature sp2">
+          <h3 class="intervention-title">High Risk Alert &amp; Escalation</h3>
+          <p class="intervention-desc">When crisis-level language is detected, CareBot immediately surfaces external mental health resources and escalation pathways.</p>
+          <img src="/assets/icare/high-risk.gif" alt="High risk alert flow" class="intervention-img" loading="lazy" />
         </div>
       </div>
 
@@ -497,7 +475,11 @@
 
       <!-- Next -->
       <div class="next-project-wrap">
-        <a href="/projects/physical-computing.html" class="next-project">next project →</a>
+        <a href="/projects/physical-computing.html" class="next-project">
+          <span class="next-project-glow"></span>
+          <div class="next-project-inner">next project →</div>
+          <span class="next-project-line"></span>
+        </a>
       </div>
 
     </div>
@@ -505,7 +487,7 @@
 
   <footer>
     <div class="footer-left">
-      <span class="footer-name">Mia Vong</span>
+      <img src="/brand_assets/mia_logo.png" alt="Mia Vong" class="footer-logo" loading="lazy" />
       <a href="https://www.linkedin.com/in/miavong/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
     </div>
     <span class="footer-made">made with claude code + figma</span>
@@ -524,6 +506,32 @@
       });
     }, { rootMargin: '-20% 0px -70% 0px' });
     sections.forEach(s => s && obs.observe(s));
+
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    let cx = -100, cy = -100;
+    document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; });
+    function updateCursor() { cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px'; requestAnimationFrame(updateCursor); }
+    updateCursor();
+
+    // GSAP scroll animations
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('.section').forEach(sec => {
+      gsap.from(sec, { opacity: 0, y: 40, duration: 0.8, ease: 'power3.out',
+        scrollTrigger: { trigger: sec, start: 'top 85%', toggleActions: 'play none none none' } });
+    });
+    gsap.utils.toArray('.img-full, .img-wrap, .ba-img').forEach(img => {
+      gsap.from(img, { opacity: 0, scale: 0.96, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: img, start: 'top 88%', toggleActions: 'play none none none' } });
+    });
+    gsap.from('.case-title', { opacity: 0, y: 30, duration: 1, ease: 'power3.out', delay: 0.15 });
+    gsap.from('.project-tag', { opacity: 0, y: 15, duration: 0.6, ease: 'power2.out', delay: 0.05 });
+
+    // Intervention features fade in on scroll
+    const interventionObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.intervention-feature').forEach(el => interventionObs.observe(el));
   </script>
 
 </body>

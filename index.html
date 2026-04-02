@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/brand_assets/mia_logo.png" />
   <title>Mia Vong</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -12,12 +15,42 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Custom cursor */
+    .cursor-dot {
+      position: fixed;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.25s cubic-bezier(0.23,1,0.32,1), height 0.25s cubic-bezier(0.23,1,0.32,1), background 0.25s ease, border-color 0.25s ease;
+      mix-blend-mode: difference;
+    }
+    @media (pointer: coarse) { .cursor-dot { display: none; } }
+
+    /* Scroll reveal base */
+    .reveal { opacity: 0; transform: translateY(40px); }
+    .reveal-card { opacity: 0; transform: translateY(30px) scale(0.97); }
+
+    /* Image hover lift */
+    .project-card {
+      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1), box-shadow 0.4s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.08), 0 20px 60px rgba(0,0,0,0.5);
+    }
+
     body {
       background-color: #09090f;
       color: #f0f0f0;
       font-family: 'DM Sans', sans-serif;
       overflow-x: hidden;
+      cursor: none;
     }
+    a, button, .nav-link, .project-card { cursor: none; }
 
     /* Noise texture */
     body::before {
@@ -96,34 +129,28 @@
       z-index: 2;
     }
 
-    /* Gradient orbs - pool at the bottom */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .orb-red   { width: 700px; height: 700px; background: radial-gradient(circle, rgba(220,40,40,0.80) 0%, transparent 60%);  bottom: -280px; left: -80px; }
-    .orb-blue  { width: 700px; height: 700px; background: radial-gradient(circle, rgba(30,70,240,0.75) 0%, transparent 60%);  bottom: -280px; left: 50%; transform: translateX(-50%); }
-    .orb-green { width: 700px; height: 700px; background: radial-gradient(circle, rgba(30,190,80,0.75) 0%, transparent 60%);  bottom: -280px; right: -80px; }
-
-    /* Horse SVG bg on hero */
+    /* Horse SVG bg */
     .horse-bg-wrap {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -52%);
-      width: 155%;
-      max-width: 1600px;
-      pointer-events: none;
-      z-index: 1;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -46%);
+      width: 155%; max-width: 1600px;
+      pointer-events: none; z-index: 1;
     }
+    .horse-bg-wrap img { width: 100%; height: auto; opacity: 0.50; }
 
-    .horse-bg-wrap img {
-      width: 100%;
-      height: auto;
-      opacity: 0.50;
+    /* Hero text proximity effect */
+    .hero-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+    }
+    .hero-heading .word { display: inline-flex; white-space: nowrap; }
+    .hero-heading .letter {
+      display: inline-block;
+      transition: none;
+      will-change: color;
     }
 
     /* Page break / divider */
@@ -263,7 +290,8 @@
     .footer-left { display: flex; align-items: center; gap: 20px; }
     .footer-name { font-size: 13px; color: #9898b0; }
     .footer-link { font-size: 13px; color: #7a7a9a; text-decoration: none; transition: color 0.2s ease; }
-    .footer-link:hover { color: #8a8ab0; }
+    .footer-link:hover { color: #0A66C2; }
+    .footer-logo { width: 24px; height: 24px; border-radius: 4px; object-fit: cover; opacity: 0.8; }
     .footer-made { font-size: 11px; color: #565672; letter-spacing: 0.04em; }
 
     @media (max-width: 768px) {
@@ -289,15 +317,14 @@
       .card-icare-inner img { max-height: 220px; }
       .card-physical, .card-personal { height: 240px; }
       .card-inner-padded { padding: 20px; }
-      .orb-red, .orb-blue, .orb-green { width: 300px; height: 300px; filter: blur(70px); bottom: -120px; }
-      .orb-blue { left: 50%; transform: translateX(-50%); }
-      .horse-bg-wrap { width: 130%; }
       .hero-heading { font-size: clamp(52px, 14vw, 90px); }
       footer { padding: 20px; flex-direction: column; gap: 10px; text-align: center; }
     }
   </style>
 </head>
 <body>
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursor"></div>
 
   <!-- Nav -->
   <nav>
@@ -311,17 +338,13 @@
   </nav>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="orb orb-red"></div>
-    <div class="orb orb-blue"></div>
-    <div class="orb orb-green"></div>
-
-    <!-- Horse SVG in background -->
+  <section class="hero" id="hero-container">
     <div class="horse-bg-wrap" aria-hidden="true">
       <img src="/landing_page/horse.svg" alt="" />
     </div>
-
-    <h1 class="hero-heading">mia vong</h1>
+    <h1 class="hero-heading" aria-label="mia vong">
+      <span class="word"><span class="letter">m</span><span class="letter">i</span><span class="letter">a</span></span><span class="letter">&nbsp;</span><span class="word"><span class="letter">v</span><span class="letter">o</span><span class="letter">n</span><span class="letter">g</span></span>
+    </h1>
   </section>
 
   <div class="hero-divider"></div>
@@ -330,13 +353,13 @@
   <section class="projects-section" id="projects">
 
     <!-- E-Truck -->
-    <div>
+    <div class="reveal-card">
       <a href="/projects/e-truck.html" class="project-card card-etruck">
         <div class="card-hover-label">view project &rarr;</div>
         <div class="card-overlay"></div>
         <div class="card-etruck-inner">
-          <img src="/assets/e-truck/a-cluster-home.png" alt="E-Truck A-Cluster" />
-          <img src="/assets/e-truck/b-cluster-home.png" alt="E-Truck B-Cluster" />
+          <img src="/assets/e-truck/a-cluster-home.png" alt="E-Truck A-Cluster" loading="lazy" />
+          <img src="/assets/e-truck/b-cluster-home.png" alt="E-Truck B-Cluster" loading="lazy" />
         </div>
       </a>
       <div class="card-label">
@@ -346,13 +369,13 @@
     </div>
 
     <!-- iCare -->
-    <div>
+    <div class="reveal-card">
       <a href="/projects/icare.html" class="project-card card-icare">
         <div class="card-hover-label">view project &rarr;</div>
         <div class="card-overlay"></div>
         <div class="card-icare-inner">
-          <img src="/assets/landing/icare-carebot.png" alt="iCare App" />
-          <img src="/assets/landing/icare-submit-report.png" alt="iCare Chat" />
+          <img src="/assets/landing/icare-carebot.png" alt="iCare App" loading="lazy" />
+          <img src="/assets/landing/icare-submit-report.png" alt="iCare Chat" loading="lazy" />
         </div>
       </a>
       <div class="card-label">
@@ -362,13 +385,13 @@
     </div>
 
     <!-- Bottom row -->
-    <div class="card-row">
+    <div class="card-row reveal-card">
       <div>
         <a href="/projects/physical-computing.html" class="project-card card-physical">
           <div class="card-hover-label">view project &rarr;</div>
           <div class="card-overlay"></div>
           <div class="card-inner-padded">
-            <img src="/assets/landing/physical-computing-img.png" alt="Physical Computing" />
+            <img src="/assets/landing/physical-computing-img.png" alt="Physical Computing" loading="lazy" />
           </div>
         </a>
         <div class="card-label">
@@ -395,12 +418,120 @@
   <!-- Footer -->
   <footer>
     <div class="footer-left">
-      <span class="footer-name">Mia Vong</span>
+      <img src="/brand_assets/mia_logo.png" alt="Mia Vong" class="footer-logo" loading="lazy" />
       <a href="https://www.linkedin.com/in/miavong/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
     </div>
     <span class="footer-made">made with claude code + figma</span>
   </footer>
 
+  <script>
+    // --- Custom cursor ---
+    const cursor = document.getElementById('cursor');
+    let cx = -100, cy = -100;
+    document.addEventListener('mousemove', e => { cx = e.clientX; cy = e.clientY; });
+    function updateCursor() {
+      cursor.style.left = cx + 'px';
+      cursor.style.top = cy + 'px';
+      requestAnimationFrame(updateCursor);
+    }
+    updateCursor();
+
+    // --- GSAP ScrollTrigger animations ---
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero heading: fade in + rise on load
+    gsap.fromTo('.hero-heading',
+      { opacity: 0, y: 50 },
+      { opacity: 1, y: 0, duration: 1.2, ease: 'power3.out', delay: 0.2 }
+    );
+
+    // --- Text cursor proximity RGB effect ---
+    const heroContainer = document.getElementById('hero-container');
+    const letters = document.querySelectorAll('.hero-heading .letter');
+    const RADIUS = 180;
+    const BASE = [240, 240, 240];
+
+    // Red gradient: dark red → bright red → warm orange mapped across letter positions
+    function getRGB(ratio) {
+      let r, g, b;
+      if (ratio < 0.5) {
+        // Deep crimson → Bright red
+        const t = ratio / 0.5;
+        r = Math.round(140 + (220 - 140) * t);
+        g = Math.round(20 + (45 - 20) * t);
+        b = Math.round(20 + (30 - 20) * t);
+      } else {
+        // Bright red → Warm coral
+        const t = (ratio - 0.5) / 0.5;
+        r = Math.round(220 + (230 - 220) * t);
+        g = Math.round(45 + (90 - 45) * t);
+        b = Math.round(30 + (60 - 30) * t);
+      }
+      return [r, g, b];
+    }
+
+    function gaussianFalloff(distance) {
+      return Math.exp(-Math.pow(distance / (RADIUS / 2), 2) / 2);
+    }
+
+    let mouseX = -9999, mouseY = -9999;
+    heroContainer.addEventListener('mousemove', e => {
+      const rect = heroContainer.getBoundingClientRect();
+      mouseX = e.clientX - rect.left;
+      mouseY = e.clientY - rect.top;
+    });
+    heroContainer.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; });
+
+    function animateLetters() {
+      const containerRect = heroContainer.getBoundingClientRect();
+      letters.forEach((letter, i) => {
+        const rect = letter.getBoundingClientRect();
+        const lx = rect.left + rect.width / 2 - containerRect.left;
+        const ly = rect.top + rect.height / 2 - containerRect.top;
+        const dist = Math.sqrt((mouseX - lx) ** 2 + (mouseY - ly) ** 2);
+        const proximity = gaussianFalloff(dist);
+        const ratio = i / (letters.length - 1);
+
+        if (proximity > 0.01) {
+          const [cr, cg, cb] = getRGB(ratio);
+          // Blend base color with RGB color, capped at 65% color opacity
+          const alpha = proximity * 0.65;
+          const r = Math.round(BASE[0] + (cr - BASE[0]) * alpha);
+          const g = Math.round(BASE[1] + (cg - BASE[1]) * alpha);
+          const b = Math.round(BASE[2] + (cb - BASE[2]) * alpha);
+          letter.style.color = `rgb(${r},${g},${b})`;
+          letter.style.transform = `scale(${1 + proximity * 0.12})`;
+        } else {
+          letter.style.color = `rgb(${BASE.join(',')})`;
+          letter.style.transform = 'scale(1)';
+        }
+      });
+      requestAnimationFrame(animateLetters);
+    }
+    animateLetters();
+
+    // Nav pill: fade in
+    gsap.from('.nav-pill', { opacity: 0, y: -20, duration: 0.8, ease: 'power2.out', delay: 0.6 });
+
+    // Project cards: staggered reveal on scroll
+    gsap.utils.toArray('.reveal-card').forEach((card, i) => {
+      gsap.fromTo(card,
+        { opacity: 0, y: 30, scale: 0.97 },
+        {
+          opacity: 1, y: 0, scale: 1,
+          duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' },
+          delay: i * 0.08
+        }
+      );
+    });
+
+    // Footer: gentle fade in
+    gsap.from('footer', {
+      opacity: 0, y: 20, duration: 0.6, ease: 'power2.out',
+      scrollTrigger: { trigger: 'footer', start: 'top 95%' }
+    });
+  </script>
 
 </body>
 </html>
